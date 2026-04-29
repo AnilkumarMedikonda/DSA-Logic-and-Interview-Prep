@@ -4,13 +4,14 @@
 
 ## 🧠 About This Repository
 
-This repository documents my journey of building strong problem-solving skills using Swift before diving into advanced Data Structures & Algorithms (DSA).
+This repository documents my journey of learning Data Structures & Algorithms using Swift.
 
 The focus is on:
 
-* Logic building
-* Writing clean and optimized code
-* Understanding time and space complexity
+* Building strong logic
+* Writing clean and structured code
+* Understanding time & space complexity
+* Solving problems step by step
 
 ---
 
@@ -21,54 +22,91 @@ The focus is on:
 * Loops (while, for, repeat-while)
 * Nested loops
 * Mathematical series
-* Mixed logical problems
+* Mixed logic problems
 * Star patterns
+
+📁 `phase-0-logic-building/`
 
 ---
 
 ### 🔹 Phase 1 – Complexity
 
-* Time Complexity (Big-O)
+* Time Complexity
 * Space Complexity
-* In-place vs extra memory
-* Recursion stack understanding
+* Big-O Notation
+* Auxiliary Space
+* In-place vs Extra Space
+* Recursion stack
+
+📁 `phase-1-complexity/`
+
+---
+
+### 🔹 Phase 2 – Strings
+
+* String traversal
+* Palindrome problems
+* Frequency counting
+* String manipulation
+
+📁 `phase-2-strings/`
+
+---
+
+### 🔹 Phase 3 – Arrays
+
+* Array traversal
+* Searching techniques
+* Two pointers
+* Basic problem solving
+
+📁 `phase-3-arrays/`
+
+---
+
+### 🔹 Phase 4 – Dictionary (HashMap)
+
+* Key-value storage
+* Frequency maps
+* Optimized lookups
+* Problem solving using hashing
+
+📁 `phase-4-dictionary/`
 
 ---
 
 ### 🔹 Upcoming Phases
 
-* Phase 2 – Arrays
-* Phase 3 – Strings
-* Phase 4 – Recursion
-* Phase 5 – Stack & Queue
-* Phase 6 – Linked List
-* Phase 7 – Problem Solving (DSA level)
+* Recursion
+* Stack
+* Queue
+* Linked List
+* Advanced DSA Problems
 
 ---
 
 ## 🎯 Goal
 
-To become confident in:
-
-* Writing efficient algorithms
-* Analyzing time & space complexity
-* Solving interview-level problems
+* Build strong problem-solving skills
+* Write optimized and efficient solutions
+* Prepare for coding interviews
 
 ---
 
 ## 💡 Learning Approach
 
-* Understand the problem
-* Perform dry run
-* Break into steps
-* Write clean logic
-* Optimize solution
+1. Understand the problem
+2. Perform a dry run
+3. Break into logical steps
+4. Write clean code
+5. Analyze time & space complexity
+6. Optimize the solution
 
 ---
 
 ## 🔥 Current Focus
 
-👉 Phase 1 – Complexity (Time & Space)
+👉 Phase 2 – Strings
 
 ---
 
