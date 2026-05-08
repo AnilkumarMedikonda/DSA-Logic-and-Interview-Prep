@@ -6,111 +6,162 @@
 
 This repository documents my journey of learning Data Structures & Algorithms using Swift.
 
-The focus is on:
+The main focus is on:
 
-* Building strong logic
-* Writing clean and structured code
+* Building strong logical thinking
+* Improving problem-solving skills
+* Writing clean and scalable Swift code
 * Understanding time & space complexity
-* Solving problems step by step
+* Solving interview-oriented problems step by step
 
 ---
 
-## 📂 Learning Phases
+# 📂 Learning Phases
 
-### 🔹 Phase 0 – Logic Building
+---
 
-* Loops (while, for, repeat-while)
-* Nested loops
-* Mathematical series
-* Mixed logic problems
-* Star patterns
+## 🔹 Phase 0 – Logic Building (Completed ✅)
+
+Focused on building:
+- Loop thinking
+- Iteration logic
+- Dry-run ability
+- Pattern understanding
+
+### 📌 Topics Covered
+
+* While Loop
+* Repeat-While Loop
+* For Loop
+* Nested Loops
+* Break & Continue
+* Mathematical Series
+* Mixed Logical Problems
+* Star Patterns
 
 📁 `phase-0-logic-building/`
 
 ---
 
-### 🔹 Phase 1 – Complexity
+## 🔹 Phase 1 – Complexity (Completed ✅)
 
-* Time Complexity
-* Space Complexity
+Focused on understanding:
+- Time Complexity
+- Space Complexity
+- Optimization thinking
+
+### 📌 Topics Covered
+
 * Big-O Notation
+* Best / Worst Case Analysis
 * Auxiliary Space
 * In-place vs Extra Space
-* Recursion stack
+* Recursion Stack
+* Brute Force vs Optimized Thinking
 
 📁 `phase-1-complexity/`
 
 ---
 
-### 🔹 Phase 2 – Strings
+## 🔹 Phase 2 – Arrays (Completed ✅)
 
-* String traversal
-* Palindrome problems
-* Frequency counting
-* String manipulation
+Focused on solving:
+- Traversal problems
+- Searching problems
+- Frequency problems
+- Logical & applied array problems
 
-📁 `phase-2-strings/`
+### 📌 Topics Covered
 
----
+* Array Traversal
+* Insert / Delete Operations
+* Searching Techniques
+* Sorting Operations
+* Reverse Operations
+* Rotation Operations
+* Merge / Split Operations
+* Aggregate & Comparative Thinking
+* Pair Sum Problems
+* Frequency Counting
+* HashMap / Dictionary Problems
 
-### 🔹 Phase 3 – Arrays
-
-* Array traversal
-* Searching techniques
-* Two pointers
-* Basic problem solving
-
-📁 `phase-3-arrays/`
-
----
-
-### 🔹 Phase 4 – Dictionary (HashMap)
-
-* Key-value storage
-* Frequency maps
-* Optimized lookups
-* Problem solving using hashing
-
-📁 `phase-4-dictionary/`
+📁 `phase-2-arrays/`
 
 ---
 
-### 🔹 Upcoming Phases
+## 🔹 Phase 3 – Strings (Current Focus 🚀)
+
+Focused on:
+- String traversal
+- String manipulation
+- Character analysis
+- Pattern matching
+
+### 📌 Topics Covered
+
+* String Traversal
+* Palindrome Problems
+* Frequency Counting
+* Reverse String Problems
+* Anagram Problems
+* Word Manipulation
+* Pattern Matching
+
+📁 `phase-3-strings/`
+
+---
+
+## 🔹 Upcoming Phases
 
 * Recursion
 * Stack
 * Queue
 * Linked List
-* Advanced DSA Problems
+* Trees
+* Graphs
+* Dynamic Programming
+* Advanced DSA Patterns
 
 ---
 
-## 🎯 Goal
+# 🎯 Goals
 
 * Build strong problem-solving skills
-* Write optimized and efficient solutions
-* Prepare for coding interviews
+* Improve optimization thinking
+* Write clean interview-ready solutions
+* Master core DSA concepts using Swift
 
 ---
 
-## 💡 Learning Approach
+# 💡 Learning Approach
 
 1. Understand the problem
 2. Perform a dry run
-3. Break into logical steps
-4. Write clean code
+3. Start with brute force solution
+4. Optimize step by step
 5. Analyze time & space complexity
-6. Optimize the solution
+6. Handle edge cases properly
 
 ---
 
-## 🔥 Current Focus
+# ⚙️ Complexity Focus
 
-👉 Phase 2 – Strings
+For every problem:
+- Brute Force Solution
+- Optimized Solution
+- Time Complexity
+- Space Complexity
+- Interview Explanation
 
 ---
 
-## 👤 Author
+# 🔥 Current Focus
 
-Medikonda Anil Kumar
+👉 Phase 3 – Strings
+
+---
+
+# 👨‍💻 Author
+
+**Medikonda Anil Kumar**  
 iOS Developer | Swift | Problem Solving
