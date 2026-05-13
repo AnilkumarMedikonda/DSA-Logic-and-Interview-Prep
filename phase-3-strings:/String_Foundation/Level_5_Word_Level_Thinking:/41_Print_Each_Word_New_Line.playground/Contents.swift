@@ -1,50 +1,60 @@
 import UIKit
 
+// 41_Print_Each_Word_New_Line
 
-// 40_Shift_Character_By_One
-
-var str = "abcd"
+var str = "Hello Swift World"
 
 var newStr = ""
 
 // Traverse string
-for ch in str {
-    let asciiValue = ch.asciiValue!
-    // z -> a
-    if asciiValue == 122 {
-        newStr += "a"
+for char in str {
+    
+    // Word end
+    if char == " " {
+        print(newStr)
+        newStr = ""
     }
-    // Z -> A
-    else if asciiValue == 90 {
-        newStr += "A"
-    }
-    // Shift character
+    
+    // Build word
     else {
-        let unicodeCharacter =
-        UnicodeScalar(asciiValue + 1)
-        newStr += String(unicodeCharacter)
+        newStr += String(char)
     }
 }
 
+// Print last word
 print(newStr)
 
 // Output:
-// bcde
+// Hello
+// Swift
+// World
 
 /*
 =====================================================
 Dry Run
 =====================================================
 
-abcd
+Hello Swift World
 
-a -> b
-b -> c
-c -> d
-d -> e
+Build:
+Hello
+
+space found:
+print Hello
+
+Build:
+Swift
+
+space found:
+print Swift
+
+Build:
+World
 
 Final Output:
-bcde
+Hello
+Swift
+World
 
 =====================================================
 Time Complexity
@@ -58,17 +68,15 @@ Space Complexity
 
 O(n)
 
-Because new string created
+Because temporary word string created
 
 =====================================================
 Approach
 =====================================================
 
-Get ASCII value.
+Build word character by character.
 
-Increase by 1.
-
-Handle wrap-around:
-z -> a
-Z -> A
+When space appears:
+print word
+reset word.
 */
