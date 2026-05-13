@@ -89,36 +89,70 @@ Focused on solving:
 
 ---
 
-## 🔹 Phase 3 – Strings (Current Focus 🚀)
+## 🔹 Phase 3 – Strings (Completed ✅)
 
 Focused on:
 - String traversal
 - String manipulation
 - Character analysis
-- Pattern matching
+- Word-level thinking
+- ASCII manipulation
+- Reverse logic
 
 ### 📌 Topics Covered
 
 * String Traversal
+* Character Operations
+* Reverse Operations
 * Palindrome Problems
-* Frequency Counting
-* Reverse String Problems
-* Anagram Problems
-* Word Manipulation
-* Pattern Matching
+* Character Frequency Problems
+* Duplicate Handling
+* Word-Level Problems
+* String Transformation
+* Case Conversion
+* Space Handling
+* Two Pointer String Problems
+* String Comparison Problems
 
 📁 `phase-3-strings/`
 
 ---
 
+## 🔹 Phase 4 – HashMap Thinking (Current Focus 🚀)
+
+Focused on:
+- Frequency counting
+- Lookup optimization
+- Pair sum logic
+- Duplicate handling
+- Hash-based problem solving
+
+### 📌 Topics Covered
+
+* Frequency Counting
+* Duplicate Detection
+* Pair Sum Problems
+* Common / Unique Elements
+* Anagram Problems
+* Hash-Based Lookup
+* Subarray Sum Problems
+* String HashMap Problems
+
+📁 `feature/hashmap/`
+
+---
+
 ## 🔹 Upcoming Phases
 
+* Sliding Window
 * Recursion
 * Stack
 * Queue
 * Linked List
 * Trees
 * Graphs
+* Heap / Priority Queue
+* Greedy Algorithms
 * Dynamic Programming
 * Advanced DSA Patterns
 
@@ -130,6 +164,7 @@ Focused on:
 * Improve optimization thinking
 * Write clean interview-ready solutions
 * Master core DSA concepts using Swift
+* Strengthen pattern recognition ability
 
 ---
 
@@ -141,6 +176,7 @@ Focused on:
 4. Optimize step by step
 5. Analyze time & space complexity
 6. Handle edge cases properly
+7. Compare multiple approaches
 
 ---
 
@@ -157,7 +193,20 @@ For every problem:
 
 # 🔥 Current Focus
 
-👉 Phase 3 – Strings
+👉 Phase 4 – HashMap Thinking
+
+---
+
+# 💡 Key Learning Philosophy
+
+This journey is not only about solving problems.
+
+It is about:
+- Building optimization thinking
+- Improving interview problem-solving
+- Strengthening logical reasoning
+- Learning clean coding practices
+- Developing scalable thinking
 
 ---
 

@@ -95,7 +95,7 @@ Method 2: Single Traversal + Flag
 
 var str2 = "  Hello   Swift   World  "
 var result2 = ""
-var previousSpace2 = true
+var previousSpace2 = true   
 
 // Traverse string
 for ch in str2 {
