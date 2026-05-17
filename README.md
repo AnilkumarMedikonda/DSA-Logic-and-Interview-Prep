@@ -197,6 +197,7 @@ Focused on:
 
 # 🔥 Upcoming Phases
 
+* String Patterns
 * Recursion
 * Stack
 * Queue
@@ -248,14 +249,48 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 5 – Array Patterns
+👉 Phase 5 – Array Patterns 🚀
 
-Currently learning:
+Recently started learning advanced array problem-solving patterns focused on:
 
-* Two Pointer Patterns
-* Sliding Window
+* Pattern recognition
+* Optimization thinking
+* Interview-style problem solving
+* Subarray-based approaches
+* Efficient traversal techniques
+
+### 📌 Currently Learning
+
+#### Two Pointer Patterns
+
+* Opposite Ends
+* Same Direction
+* Partition Problems
+
+#### Sliding Window Patterns
+
+* Fixed Size Window
+* Variable Size Window
+* Monotonic Window
+
+#### Prefix-Based Problems
+
 * Prefix Sum
-* Binary Search Patterns
+* Prefix XOR
+* 2D Prefix Sum
+
+#### Subarray Algorithms
+
+* Kadane Algorithm
+* Max Product Subarray
+* Subarray XOR / Sum Problems
+
+#### Binary Search Patterns
+
+* Binary Search on Index
+* Binary Search on Answer
+
+📁 `phase-5-array-patterns/`
 
 ---
 
