@@ -2,9 +2,9 @@
 
 ---
 
-## 🧠 About This Repository
+# 🧠 About This Repository
 
-This repository documents my journey of learning Data Structures & Algorithms using Swift.
+This repository documents my journey of learning **Data Structures & Algorithms using Swift**.
 
 The main focus is on:
 
@@ -13,6 +13,7 @@ The main focus is on:
 * Writing clean and scalable Swift code
 * Understanding time & space complexity
 * Solving interview-oriented problems step by step
+* Strengthening optimization and pattern recognition skills
 
 ---
 
@@ -20,13 +21,14 @@ The main focus is on:
 
 ---
 
-## 🔹 Phase 0 – Logic Building (Completed ✅)
+## 🔹 Phase 0 – Logic Building ✅
 
 Focused on building:
-- Loop thinking
-- Iteration logic
-- Dry-run ability
-- Pattern understanding
+
+* Loop thinking
+* Iteration logic
+* Dry-run ability
+* Pattern understanding
 
 ### 📌 Topics Covered
 
@@ -43,12 +45,13 @@ Focused on building:
 
 ---
 
-## 🔹 Phase 1 – Complexity (Completed ✅)
+## 🔹 Phase 1 – Complexity ✅
 
 Focused on understanding:
-- Time Complexity
-- Space Complexity
-- Optimization thinking
+
+* Time Complexity
+* Space Complexity
+* Optimization thinking
 
 ### 📌 Topics Covered
 
@@ -63,13 +66,14 @@ Focused on understanding:
 
 ---
 
-## 🔹 Phase 2 – Arrays (Completed ✅)
+## 🔹 Phase 2 – Arrays ✅
 
 Focused on solving:
-- Traversal problems
-- Searching problems
-- Frequency problems
-- Logical & applied array problems
+
+* Traversal problems
+* Searching problems
+* Frequency problems
+* Logical & applied array problems
 
 ### 📌 Topics Covered
 
@@ -89,15 +93,16 @@ Focused on solving:
 
 ---
 
-## 🔹 Phase 3 – Strings (Completed ✅)
+## 🔹 Phase 3 – Strings ✅
 
 Focused on:
-- String traversal
-- String manipulation
-- Character analysis
-- Word-level thinking
-- ASCII manipulation
-- Reverse logic
+
+* String traversal
+* String manipulation
+* Character analysis
+* Word-level thinking
+* ASCII manipulation
+* Reverse logic
 
 ### 📌 Topics Covered
 
@@ -118,14 +123,16 @@ Focused on:
 
 ---
 
-## 🔹 Phase 4 – HashMap Thinking (Current Focus 🚀)
+## 🔹 Phase 4 – HashMap Thinking ✅
 
 Focused on:
-- Frequency counting
-- Lookup optimization
-- Pair sum logic
-- Duplicate handling
-- Hash-based problem solving
+
+* Frequency counting
+* Lookup optimization
+* Pair sum logic
+* Duplicate handling
+* Prefix Sum + HashMap
+* Hash-based problem solving
 
 ### 📌 Topics Covered
 
@@ -135,16 +142,61 @@ Focused on:
 * Common / Unique Elements
 * Anagram Problems
 * Hash-Based Lookup
+* Prefix Sum Problems
 * Subarray Sum Problems
 * String HashMap Problems
 
-📁 `feature/hashmap/`
+📁 `phase-4-hashmap/`
 
 ---
 
-## 🔹 Upcoming Phases
+## 🔹 Phase 5 – Array Patterns 🚀
 
-* Sliding Window
+Focused on:
+
+* Pattern recognition
+* Interview-style problem solving
+* Optimization techniques
+* Subarray-based problems
+* Advanced traversal thinking
+
+### 📌 Topics Covered
+
+#### Two Pointer Patterns
+
+* Opposite Ends
+* Same Direction
+* Partition Problems
+
+#### Sliding Window Patterns
+
+* Fixed Size Window
+* Variable Size Window
+* Monotonic Window
+
+#### Prefix-Based Problems
+
+* Prefix Sum
+* Prefix XOR
+* 2D Prefix Sum
+
+#### Subarray Algorithms
+
+* Kadane Algorithm
+* Max Product Subarray
+* Subarray XOR / Sum Problems
+
+#### Binary Search Patterns
+
+* Binary Search on Index
+* Binary Search on Answer
+
+📁 `phase-5-array-patterns/`
+
+---
+
+# 🔥 Upcoming Phases
+
 * Recursion
 * Stack
 * Queue
@@ -170,6 +222,8 @@ Focused on:
 
 # 💡 Learning Approach
 
+For every problem:
+
 1. Understand the problem
 2. Perform a dry run
 3. Start with brute force solution
@@ -182,18 +236,26 @@ Focused on:
 
 # ⚙️ Complexity Focus
 
-For every problem:
-- Brute Force Solution
-- Optimized Solution
-- Time Complexity
-- Space Complexity
-- Interview Explanation
+Each solution includes:
+
+* Brute Force Solution
+* Optimized Solution
+* Time Complexity
+* Space Complexity
+* Interview Explanation
 
 ---
 
 # 🔥 Current Focus
 
-👉 Phase 4 – HashMap Thinking
+👉 Phase 5 – Array Patterns
+
+Currently learning:
+
+* Two Pointer Patterns
+* Sliding Window
+* Prefix Sum
+* Binary Search Patterns
 
 ---
 
@@ -202,15 +264,17 @@ For every problem:
 This journey is not only about solving problems.
 
 It is about:
-- Building optimization thinking
-- Improving interview problem-solving
-- Strengthening logical reasoning
-- Learning clean coding practices
-- Developing scalable thinking
+
+* Building optimization thinking
+* Improving interview problem-solving
+* Strengthening logical reasoning
+* Learning clean coding practices
+* Developing scalable thinking
+* Understanding patterns deeply instead of memorizing solutions
 
 ---
 
 # 👨‍💻 Author
 
-**Medikonda Anil Kumar**  
+**Medikonda Anil Kumar**
 iOS Developer | Swift | Problem Solving
