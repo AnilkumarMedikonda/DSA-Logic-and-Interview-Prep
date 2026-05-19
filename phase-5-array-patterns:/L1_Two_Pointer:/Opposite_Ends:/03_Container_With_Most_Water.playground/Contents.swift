@@ -165,11 +165,9 @@ while left < right {
      */
 
     if heights[left] > heights[right] {
-
         right -= 1
     }
     else {
-
         left += 1
     }
 }
