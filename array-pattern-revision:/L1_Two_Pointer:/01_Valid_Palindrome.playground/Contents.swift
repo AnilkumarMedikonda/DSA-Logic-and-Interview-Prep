@@ -1,11 +1,15 @@
 import Foundation
 
 // LeetCode 125 — Valid Palindrome | Easy | Two Pointers
+
 // NOTE: Only keep letters & numbers, ignore case
 
 // MARK: - Brute Force
+
 // filter + reverse + compare
+
 // Time: O(n) | Space: O(n)
+
 // INTERVIEW: Start here, explain before coding
 func isPalindromeBrute(_ s: String) -> Bool {
     
@@ -31,10 +35,15 @@ func isPalindromeBrute(_ s: String) -> Bool {
 
 // MARK: - Optimal ⭐️ BEST
 // two pointers, skip non-alphanumeric, capture char after skip
+
 // Time: O(n) | Space: O(1)
+
 // INTERVIEW: Interviewer expects this — no extra space
+
 // INTERVIEW: Always capture char AFTER skip loop
+
 // INTERVIEW: Array(s) avoids Swift index complexity
+
 func isPalindromeOptimal(_ s: String) -> Bool {
     
     let chars = Array(s)
@@ -76,12 +85,14 @@ let tests: [(String, Bool)] = [
 ]
 
 print("--- Brute Force ---")
+
 for (i, t) in tests.enumerated() {
     let r = isPalindromeBrute(t.0)
     print("Test \(i+1): \(r == t.1 ? "✅" : "❌") | \(t.0)")
 }
 
 print("\n--- Optimal ⭐️ ---")
+
 for (i, t) in tests.enumerated() {
     let r = isPalindromeOptimal(t.0)
     print("Test \(i+1): \(r == t.1 ? "✅" : "❌") | \(t.0)")
