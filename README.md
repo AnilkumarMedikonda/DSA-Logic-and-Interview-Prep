@@ -150,7 +150,7 @@ Focused on:
 
 ---
 
-## 🔹 Phase 5 – Array Patterns 🚀
+## 🔹 Phase 5 – Array Patterns 🚀 (Current)
 
 Focused on:
 
@@ -162,31 +162,38 @@ Focused on:
 
 ### 📌 Topics Covered
 
-#### Two Pointer Patterns
+#### L1 — Two Pointer Patterns
 
-* Opposite Ends
-* Same Direction
-* Partition Problems
+* Opposite Ends (Valid Palindrome, Two Sum II, Container With Most Water, 3Sum, 4Sum, Trapping Rain Water)
+* Same Direction (Remove Duplicates, Move Zeroes, Squares of Sorted Array, Find Duplicate)
+* K Sum Pattern (Two Sum, 3Sum, 4Sum)
 
-#### Sliding Window Patterns
+#### L2 — Partition Problems
 
-* Fixed Size Window
-* Variable Size Window
-* Monotonic Window
+* Sort Colors (Dutch National Flag)
+* Partition Array By Odd And Even
+* Partition Array Around A Pivot
+* Wiggle Sort II
 
-#### Prefix-Based Problems
+#### L3 — Sliding Window Patterns
+
+* Fixed Size Window (Permutation In String, Sliding Window Maximum)
+* Variable Size Window (Min Size Subarray Sum, Longest Substring Without Repeating, Longest K Distinct, Fruits Into Baskets, Binary Subarrays With Sum, Subarrays With K Different, Min Window Substring, Longest Repeating Character Replacement)
+* Monotonic Window (Sliding Window Maximum, Longest Continuous Subarray Abs Diff Limit)
+
+#### L4 — Prefix-Based Problems
 
 * Prefix Sum
 * Prefix XOR
 * 2D Prefix Sum
 
-#### Subarray Algorithms
+#### L5 — Subarray Algorithms
 
 * Kadane Algorithm
 * Max Product Subarray
 * Subarray XOR / Sum Problems
 
-#### Binary Search Patterns
+#### L6 — Binary Search Patterns
 
 * Binary Search on Index
 * Binary Search on Answer
@@ -218,6 +225,7 @@ Focused on:
 * Write clean interview-ready solutions
 * Master core DSA concepts using Swift
 * Strengthen pattern recognition ability
+* Crack product-based company interview by September 2026
 
 ---
 
@@ -240,57 +248,28 @@ For every problem:
 Each solution includes:
 
 * Brute Force Solution
-* Optimized Solution
+* Optimized Solution ⭐️
 * Time Complexity
 * Space Complexity
-* Interview Explanation
+* Interview Q&A Notes
 
 ---
 
 # 🔥 Current Focus
 
-👉 Phase 5 – Array Patterns 🚀
+👉 Phase 5 – Array Patterns — Sliding Window 🚀
 
-Recently started learning advanced array problem-solving patterns focused on:
+### ✅ Completed
 
-* Pattern recognition
-* Optimization thinking
-* Interview-style problem solving
-* Subarray-based approaches
-* Efficient traversal techniques
+* L1 Two Pointer — 14 problems
+* L2 Partition — 4 problems
+* L3 Sliding Window — 12 problems
 
-### 📌 Currently Learning
+### ⬜ In Progress
 
-#### Two Pointer Patterns
-
-* Opposite Ends
-* Same Direction
-* Partition Problems
-
-#### Sliding Window Patterns
-
-* Fixed Size Window
-* Variable Size Window
-* Monotonic Window
-
-#### Prefix-Based Problems
-
-* Prefix Sum
-* Prefix XOR
-* 2D Prefix Sum
-
-#### Subarray Algorithms
-
-* Kadane Algorithm
-* Max Product Subarray
-* Subarray XOR / Sum Problems
-
-#### Binary Search Patterns
-
-* Binary Search on Index
-* Binary Search on Answer
-
-📁 `phase-5-array-patterns/`
+* L4 Prefix Sum
+* L5 Kadane / Subarray Algorithms
+* L6 Binary Search
 
 ---
 
@@ -300,6 +279,7 @@ This journey is not only about solving problems.
 
 It is about:
 
+* Asking — which pattern does this problem belong to?
 * Building optimization thinking
 * Improving interview problem-solving
 * Strengthening logical reasoning
@@ -312,4 +292,7 @@ It is about:
 # 👨‍💻 Author
 
 **Medikonda Anil Kumar**
-iOS Developer | Swift | Problem Solving
+iOS Developer | Swift | DSA | Problem Solving
+
+📁 GitHub: https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep
+
