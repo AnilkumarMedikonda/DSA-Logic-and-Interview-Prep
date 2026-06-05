@@ -10,6 +10,7 @@ Build strong problem-solving skills using core array patterns by focusing on:
 * K Sum patterns — Two Sum, 3Sum, 4Sum
 * Partition — Dutch National Flag
 * Sliding Window — fixed size, variable size, monotonic window
+* Prefix Sum — 1D, XOR, 2D
 * Pattern recognition across problems
 * Reducing O(n²) / O(n³) to O(n) solutions
 
@@ -49,7 +50,7 @@ This phase focuses on understanding how to:
 * Sort Colors
 * Partition Array By Odd And Even
 * Partition Array Around A Pivot
-* Wiggle Sort II (Optional)
+* Wiggle Sort II
 
 ### L3 — Sliding Window
 
@@ -70,6 +71,29 @@ This phase focuses on understanding how to:
 #### Monotonic Window
 * Sliding Window Maximum
 * Longest Continuous Subarray Absolute Diff Limit
+
+### L4 — Prefix Based
+
+#### Prefix Sum
+* Range Sum Query Immutable
+* Find Pivot Index
+* Subarray Sum Equals K
+* Continuous Subarray Sum
+* Product Of Array Except Self
+* Count Subarrays With Equal 0s And 1s
+* Number Of Subarrays With Sum In Range
+
+#### Prefix XOR
+* Single Number
+* XOR Queries Of A Subarray
+* Subarray With Given XOR
+* Count Triplets With Equal XOR
+
+#### Prefix 2D
+* Range Sum Query 2D Immutable
+* Matrix Block Sum
+* Number Of Submatrices That Sum To Target
+* Max Side Length Of Square
 
 ---
 
@@ -95,169 +119,12 @@ This phase focuses on understanding how to:
 * 13 Squares of a Sorted Array
 * 14 Find The Duplicate Number
 
-**K Sum Pattern**
-* 01 Two Sum
-* 02 3Sum
-* 03 4Sum
-
 ### L2 — Partition (4 problems)
-
 * 15 Sort Colors
 * 16 Partition Array By Odd And Even
 * 17 Partition Array Around A Pivot
-* 18 Wiggle Sort II (Optional)
+* 18 Wiggle Sort II
 
-### L3 — Sliding Window (12 problems)
+### L3 — Sliding Window (17 problems)
 
-**Fixed Size**
-* 22 Permutation In String
-* 23 Sliding Window Maximum (Fixed)
-
-**Variable Size**
-* 24 Minimum Size Subarray Sum
-* 25 Longest Substring Without Repeating Characters
-* 26 Longest Substring With At Most K Distinct
-* 27 Fruits Into Baskets
-* 28 Binary Subarrays With Sum
-* 29 Subarrays With K Different Integers
-* 30 Minimum Window Substring
-* 31 Longest Repeating Character Replacement
-
-**Monotonic Window**
-* 32 Sliding Window Maximum
-* 33 Longest Continuous Subarray Absolute Diff Limit
-
----
-
-## 🧩 How I Approached Problems
-
-1. Understand the problem
-2. Perform a dry run
-3. Identify the pattern — opposite ends / same direction / window
-4. Start with brute force
-5. Identify the bottleneck
-6. Optimise using the right technique
-7. Analyse time and space complexity
-8. Handle edge cases properly
-
----
-
-## ⚙️ Key Learnings
-
-### Two Pointer — Opposite Ends
-* Sort first — enables two pointer and easy duplicate skip
-* left < right vs left <= right — always check if pointers can meet
-* smaller side is the bottleneck — process that side first
-* skip duplicate i before loop, skip duplicate left/right after match
-
-### Two Pointer — Same Direction
-* insertPos tracks next valid slot
-* swapAt takes indices not values
-* != condition triggers the action — not what you want to skip
-
-### K Sum Pattern
-* Fix one pointer, reduce to K-1 sum
-* 3Sum = fix i + Two Sum II
-* 4Sum = fix i + fix j + Two Sum II
-
-### Partition — Dutch National Flag
-* Three pointers — low, mid, high
-* mid doesn't move after swap with high — unseen element
-* mid moves after swap with low — already seen element
-* Same structure — replace 0/1/2 with conditions
-
-### Sliding Window — Variable Size
-* expand right → shrink left when invalid
-* while for minimum problems
-* if for maximum problems
-* exactly(k) = atMost(k) - atMost(k-1)
-* remove key from HashMap when count hits 0
-
-### Sliding Window — Monotonic Window
-* Deque stores indices not values
-* front = max (maxDeque) or min (minDeque)
-* remove front when outside window
-* remove back when useless
-* two deques for max AND min tracking
-
----
-
-## ⚙️ Pattern Recognition
-
-```
-Opposite Ends     → sorted, pairs, palindrome, container
-Same Direction    → remove, move, duplicates, squares
-K Sum             → fix pointers, reduce to smaller sum
-Partition         → three zones, in-place rearrangement
-Fixed Window      → permutation check, fixed size max/min
-Variable Window   → longest/shortest subarray, count problems
-Monotonic Window  → max or min of every sliding window
-```
-
----
-
-## ⏱️ Complexity Insight
-
-* Two Pointer              → O(n) time    O(1) space
-* K Sum                    → O(n²) time   O(1) space
-* Partition                → O(n) time    O(1) space
-* Sliding Window basic     → O(n) time    O(1) space
-* Sliding Window + HashMap → O(n) time    O(k) space
-* Sliding Window + Deque   → O(n) time    O(k) space
-* Brute Force              → O(n²) / O(n³) time
-
----
-
-## 🔥 Key Formulas
-
-```
-water[i]                   = min(maxLeft, maxRight) - height[i]
-windowSize - maxFreq <= k  → valid window  (Longest Repeating)
-exactly(k)                 = atMost(k) - atMost(k-1)
-max - min <= limit         → valid window  (Abs Diff Limit)
-zeroCount <= k             → valid window  (Max Consecutive Ones)
-front < right - k + 1      → outside window → remove from deque
-```
-
----
-
-## 🔥 Outcome
-
-After completing this phase, I can:
-
-* Identify Two Pointer direction — opposite or same
-* Apply Dutch National Flag to any partition problem
-* Apply sliding window for subarray and substring problems
-* Use deque for monotonic window problems
-* Recognise exactly(k) = atMost(k) - atMost(k-1) pattern
-* Explain brute force and optimal clearly in interviews
-* Handle all edge cases confidently
-
----
-
-## 🚀 Next Step
-
-Move to:
-👉 **Phase 6 — Prefix Sum + Binary Search**
-
-Upcoming focus:
-
-* Prefix Sum arrays
-* Range sum queries
-* Binary Search on sorted arrays
-* Binary Search on answers
-* 2D prefix sum problems
-
----
-
-## 💡 Final Note
-
-This phase is not just about memorising patterns.
-
-It is about:
-
-* Asking — which pattern does this problem belong to?
-* Building optimization thinking
-* Reducing brute force to linear time
-* Writing clean Swift solutions with proper notes
-* Understanding why each technique works — not just how
+**
