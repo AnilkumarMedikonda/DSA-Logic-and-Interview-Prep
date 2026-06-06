@@ -181,11 +181,11 @@ Focused on:
 * Variable Size Window (Min Size Subarray Sum, Longest Substring Without Repeating, Longest K Distinct, Fruits Into Baskets, Binary Subarrays With Sum, Subarrays With K Different, Min Window Substring, Longest Repeating Character Replacement)
 * Monotonic Window (Sliding Window Maximum, Longest Continuous Subarray Abs Diff Limit)
 
-#### L4 — Prefix-Based Problems
+#### L4 — Prefix-Based Problems ✅
 
-* Prefix Sum
-* Prefix XOR
-* 2D Prefix Sum
+* Prefix Sum (Range Sum Query, Pivot Index, Subarray Sum Equals K, Product Except Self, Contiguous Array, Continuous Subarray Sum)
+* Prefix XOR (Single Number, XOR Queries, Longest Subarray XOR, Count Triplets)
+* 2D Prefix Sum (Range Sum Query 2D, Matrix Block Sum, Submatrices Sum Target, Max Side Length Square)
 
 #### L5 — Subarray Algorithms
 
@@ -257,17 +257,17 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 5 – Array Patterns — Sliding Window 🚀
+👉 Phase 5 – Array Patterns — L5 Kadane / Subarray Algorithms 🚀
 
 ### ✅ Completed
 
 * L1 Two Pointer — 14 problems
 * L2 Partition — 4 problems
 * L3 Sliding Window — 12 problems
+* L4 Prefix Based — 15 problems
 
 ### ⬜ In Progress
 
-* L4 Prefix Sum
 * L5 Kadane / Subarray Algorithms
 * L6 Binary Search
 
@@ -295,4 +295,3 @@ It is about:
 iOS Developer | Swift | DSA | Problem Solving
 
 📁 GitHub: https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep
-

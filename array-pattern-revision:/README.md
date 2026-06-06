@@ -1,4 +1,4 @@
-# 📒 Array Pattern Revision — Two Pointer + Partition + Sliding Window
+# 📒 Array Pattern Revision — Two Pointer + Partition + Sliding Window + Prefix Sum
 
 ---
 
@@ -13,9 +13,10 @@ Build strong problem-solving skills using array patterns by focusing on:
 * HashMap-based window tracking
 * Frequency counting in windows
 * Monotonic data structure thinking
+* Prefix sum for range queries and subarray problems
 
 This phase focuses on understanding how to:
-👉 Convert brute force O(n²) / O(n³) solutions into optimized O(n) solutions using pointer and window techniques.
+👉 Convert brute force O(n²) / O(n³) solutions into optimized O(n) solutions using pointer, window, and prefix techniques.
 
 ---
 
@@ -51,6 +52,15 @@ This phase focuses on understanding how to:
 * Max Consecutive Ones III
 * Permutation In String
 
+### L4 — Prefix Sum
+
+* Range Sum Query
+* Pivot Index
+* Subarray Sum Equals K
+* Product Of Array Except Self
+* Contiguous Array (Equal 0s And 1s)
+* Continuous Subarray Sum
+
 ---
 
 ## 🧩 Problems Practiced
@@ -85,6 +95,15 @@ This phase focuses on understanding how to:
 * 20 Max Consecutive Ones III
 * 21 Permutation In String
 
+### L4 — Prefix Sum (6 problems)
+
+* 22 Range Sum Query
+* 23 Pivot Index
+* 24 Subarray Sum Equals K
+* 25 Product Of Array Except Self
+* 26 Contiguous Array (Equal 0s And 1s)
+* 27 Continuous Subarray Sum
+
 ---
 
 ## 🧩 How I Approached Problems
@@ -93,7 +112,7 @@ This phase focuses on understanding how to:
 2. Perform a dry run
 3. Start with brute force solution
 4. Identify the bottleneck
-5. Recognize the pattern — two pointer / sliding window
+5. Recognize the pattern — two pointer / sliding window / prefix sum
 6. Optimize using the right technique
 7. Analyze time and space complexity
 8. Handle edge cases properly
@@ -128,79 +147,17 @@ This phase focuses on understanding how to:
 * front of deque = max / min index of window
 * Remove front when outside window, remove back when useless
 
+### Prefix Sum
+
+* Build prefix array once → answer range queries in O(1)
+* prefix[i] = prefix[i-1] + nums[i-1]
+* sumRange(l, r) = prefix[r+1] - prefix[l]
+* prefix + hashmap → count subarrays with target sum
+* Init map [0: 1] for frequency, [0: -1] for index problems
+* Replace 0 → -1 to convert equal 0s and 1s to sum = 0
+* Same remainder twice → subarray between is multiple of k
+* Product except self → left pass × right pass, no division
+
 ---
 
 ## ⚙️ Pattern Recognition
-
-```
-Two Pointer     → sorted array, pairs, opposites, left-right inward
-Partition       → rearrange in-place, three zones, Dutch National Flag
-Sliding Window  → subarray / substring, contiguous elements, same direction
-Deque Window    → max or min of every window, monotonic structure
-```
-
----
-
-## ⏱️ Complexity Insight
-
-* Two Pointer               → O(n) time    O(1) space
-* Partition                 → O(n) time    O(1) space
-* Sliding Window basic      → O(n) time    O(1) space
-* Sliding Window + HashMap  → O(n) time    O(k) space
-* Sliding Window + Deque    → O(n) time    O(k) space
-* Brute Force nested loops  → O(n²) / O(n³) time
-
----
-
-## 🔥 Key Formulas
-
-```
-water[i]            = min(maxLeft, maxRight) - height[i]
-windowSize - maxFreq <= k  → valid window (Problem 17)
-exactly(k)          = atMost(k) - atMost(k-1)  (Problem 14, 15)
-max - min <= limit  → valid window (Problem 19)
-zeroCount <= k      → valid window (Problem 20)
-```
-
----
-
-## 🔥 Outcome
-
-After completing this phase, I can:
-
-* Solve Two Pointer problems confidently
-* Identify partition problems and apply Dutch National Flag
-* Apply sliding window for subarray and substring problems
-* Use deque for sliding window max/min problems
-* Recognise exactly(k) = atMost(k) - atMost(k-1) pattern
-* Explain brute force and optimal solutions clearly in interviews
-* Handle edge cases — left <= right, break conditions, key removal
-
----
-
-## 🚀 Next Step
-
-Move to:
-👉 **Phase 5 — Prefix Sum + Binary Search**
-
-Upcoming focus:
-
-* Prefix Sum patterns
-* Binary Search on arrays
-* Binary Search on answers
-* 2D prefix sum
-* Range sum queries
-
----
-
-## 💡 Final Note
-
-This phase is not just about Two Pointer and Sliding Window.
-
-It is about:
-
-* Building pattern recognition
-* Reducing brute force to linear time
-* Improving interview problem-solving speed
-* Writing clean Swift solutions with proper notes
-* Understanding why each technique works — not just how
