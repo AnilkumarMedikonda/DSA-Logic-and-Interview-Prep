@@ -162,20 +162,20 @@ Focused on:
 
 ### 📌 Topics Covered
 
-#### L1 — Two Pointer Patterns
+#### L1 — Two Pointer Patterns ✅
 
 * Opposite Ends (Valid Palindrome, Two Sum II, Container With Most Water, 3Sum, 4Sum, Trapping Rain Water)
 * Same Direction (Remove Duplicates, Move Zeroes, Squares of Sorted Array, Find Duplicate)
 * K Sum Pattern (Two Sum, 3Sum, 4Sum)
 
-#### L2 — Partition Problems
+#### L2 — Partition Problems ✅
 
 * Sort Colors (Dutch National Flag)
 * Partition Array By Odd And Even
 * Partition Array Around A Pivot
 * Wiggle Sort II
 
-#### L3 — Sliding Window Patterns
+#### L3 — Sliding Window Patterns ✅
 
 * Fixed Size Window (Permutation In String, Sliding Window Maximum)
 * Variable Size Window (Min Size Subarray Sum, Longest Substring Without Repeating, Longest K Distinct, Fruits Into Baskets, Binary Subarrays With Sum, Subarrays With K Different, Min Window Substring, Longest Repeating Character Replacement)
@@ -186,12 +186,19 @@ Focused on:
 * Prefix Sum (Range Sum Query, Pivot Index, Subarray Sum Equals K, Product Except Self, Contiguous Array, Continuous Subarray Sum)
 * Prefix XOR (Single Number, XOR Queries, Longest Subarray XOR, Count Triplets)
 * 2D Prefix Sum (Range Sum Query 2D, Matrix Block Sum, Submatrices Sum Target, Max Side Length Square)
+* Prefix Sum (Range Sum Query, Find Pivot Index, Subarray Sum Equals K, Continuous Subarray Sum, Product Except Self, Count Subarrays Equal 0s 1s, Subarrays With Sum In Range)
+* Prefix XOR (Single Number, XOR Queries, Subarray With Given XOR, Count Triplets Equal XOR)
+* 2D Prefix Sum (Range Sum Query 2D, Matrix Block Sum, Submatrices Sum To Target, Max Side Length Square)
 
-#### L5 — Subarray Algorithms
+#### L5 — Subarray Algorithms 🔄
 
-* Kadane Algorithm
-* Max Product Subarray
-* Subarray XOR / Sum Problems
+* Kadane's Algorithm ✅
+  * Maximum Subarray — LC 53 ✅
+  * Maximum Sum Circular Subarray — LC 918 ✅
+  * Maximum Absolute Sum of Any Subarray — LC 1749 ✅
+  * Longest Turbulent Subarray — LC 978 ⏭️ Low Priority
+* Max Product Subarray — LC 152 🔜
+* Subarray XOR / Sum Problems 🔜
 
 #### L6 — Binary Search Patterns
 
@@ -257,8 +264,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 5 – Array Patterns — L5 Kadane / Subarray Algorithms 🚀
-
+👉 Phase 5 – Array Patterns — L5 Subarray Algorithms (Kadane's) 🚀
 ### ✅ Completed
 
 * L1 Two Pointer — 14 problems
@@ -266,10 +272,77 @@ Each solution includes:
 * L3 Sliding Window — 12 problems
 * L4 Prefix Based — 15 problems
 
-### ⬜ In Progress
+### 🔄 In Progress
 
 * L5 Kadane / Subarray Algorithms
 * L6 Binary Search
+* L5 Kadane's Algorithm — 3 of 4 problems done
+  * ✅ LC 53 — Maximum Subarray
+  * ✅ LC 918 — Maximum Sum Circular Subarray
+  * ✅ LC 1749 — Maximum Absolute Sum of Any Subarray
+  * ⏭️ LC 978 — Longest Turbulent Subarray (Low Priority)
+
+### ⬜ Upcoming
+
+* L5 Max Product Subarray — LC 152
+* L5 Subarray XOR / Sum Problems
+* L6 Binary Search Patterns
+
+---
+
+# 💡 Key Learnings Per Pattern
+
+### Two Pointer
+* Sort first when duplicates need to be skipped
+* left < right vs left <= right — always check if pointers can meet
+* swapAt takes indices not values
+* Skip duplicate i before loop, skip duplicate left/right after match
+* The smaller side is always the bottleneck
+
+### Partition
+* Dutch National Flag — three pointers low, mid, high
+* mid doesn't move after swap with high — unseen element
+* mid moves after swap with low — already seen element
+
+### Sliding Window
+* expand right → shrink left when invalid
+* while for minimum window problems
+* if for maximum window problems
+* exactly(k) = atMost(k) - atMost(k-1)
+* Remove key from HashMap when count hits 0
+* Deque stores indices not values
+
+### Prefix Sum
+* Build prefix array once → answer range queries in O(1)
+* prefix[i] = prefix[i-1] + nums[i-1]
+* sumRange(l, r) = prefix[r+1] - prefix[l]
+* Init map [0: 1] for frequency, [0: -1] for index problems
+* Replace 0 → -1 to convert equal 0s and 1s to sum = 0
+* Same remainder twice → subarray between is multiple of k
+* Product except self → left pass × right pass, no division
+* XOR range query → prefix[r] XOR prefix[l-1]
+* 2D prefix → row-by-row compression then column prefix
+
+### Kadane's Algorithm
+* Initialize currentSum and maxSum with nums[0] — not 0 or Int.min
+* At each index — extend or fresh start: if currentSum + nums[i] < nums[i] → reset
+* Circular subarray — totalSum - minSubarray (run Kadane's min)
+* All negative edge case — totalSum == minSum → return maxSum only
+* Absolute sum — max(maxSum, abs(minSum))
+* Kadane's min — flip the comparison: if currentMin + nums[i] > nums[i] → reset
+
+---
+
+# ⚙️ Pattern Recognition Table
+
+| Pattern | Trigger Words |
+|---------|--------------|
+| Two Pointer | sorted array, pairs, palindrome, duplicates |
+| Partition | rearrange, group, sort colors, 0s 1s 2s |
+| Sliding Window | subarray, substring, window, contiguous |
+| Prefix Sum | range sum, subarray sum equals k, 2D matrix |
+| Kadane's | maximum subarray, circular, absolute, product |
+| Binary Search | sorted, find target, minimize maximum |
 
 ---
 
