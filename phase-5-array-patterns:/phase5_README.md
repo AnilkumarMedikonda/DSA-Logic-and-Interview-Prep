@@ -95,9 +95,16 @@ This phase focuses on understanding how to:
 * Number Of Submatrices That Sum To Target
 * Max Side Length Of Square
 
-### L5 — Subarray Algorithms
-* Kadane Algorithm — Maximum Subarray
-* Max Product Subarray
+### L5 — Subarray Algorithms ✅
+
+#### Kadane's Algorithm ✅
+* Maximum Subarray — LC 53
+* Maximum Sum Circular Subarray — LC 918
+* Maximum Absolute Sum of Any Subarray — LC 1749
+* Longest Turbulent Subarray — LC 978 ⏭️ Low Priority
+
+#### Upcoming
+* Max Product Subarray — LC 152
 * Subarray XOR / Sum Problems
 
 ### L6 — Binary Search Patterns
@@ -108,7 +115,7 @@ This phase focuses on understanding how to:
 
 ## 🧩 Problems Practiced
 
-### L1 — Two Pointer (14 problems)
+### L1 — Two Pointer (14 problems) ✅
 
 **Opposite Ends**
 * 01 Valid Palindrome
@@ -128,13 +135,13 @@ This phase focuses on understanding how to:
 * 13 Squares of a Sorted Array
 * 14 Find The Duplicate Number
 
-### L2 — Partition (4 problems)
+### L2 — Partition (4 problems) ✅
 * 15 Sort Colors
 * 16 Partition Array By Odd And Even
 * 17 Partition Array Around A Pivot
 * 18 Wiggle Sort II
 
-### L3 — Sliding Window (17 problems)
+### L3 — Sliding Window (12 problems) ✅
 
 **Fixed Size**
 * 19 Permutation In String
@@ -177,10 +184,17 @@ This phase focuses on understanding how to:
 * 44 Number Of Submatrices That Sum To Target
 * 45 Max Side Length Of Square
 
-### L5 — Subarray Algorithms (Coming Next)
-* 46 Maximum Subarray — Kadane
-* 47 Max Product Subarray
-* 48 Subarray XOR / Sum Problems
+### L5 — Subarray Algorithms — Kadane's (3 problems) 🔄
+
+**Kadane's Algorithm**
+* 51 Maximum Subarray — LC 53 ✅
+* 52 Maximum Sum Circular Subarray — LC 918 ✅
+* 53 Maximum Absolute Sum of Any Subarray — LC 1749 ✅
+* 54 Longest Turbulent Subarray — LC 978 ⏭️ Low Priority
+
+**Upcoming**
+* 55 Max Product Subarray — LC 152
+* 56 Subarray XOR / Sum Problems
 
 ### L6 — Binary Search Patterns (Upcoming)
 * Binary Search on Index
@@ -234,6 +248,23 @@ This phase focuses on understanding how to:
 * XOR range query → prefix[r] XOR prefix[l-1]
 * 2D prefix → row-by-row compression then column prefix
 
+### Kadane's Algorithm
+* Initialize currentSum and maxSum with nums[0] — not 0 or Int.min
+* At each index — extend or fresh start: if currentSum + nums[i] < nums[i] → reset
+* Circular subarray — totalSum - minSubarray (Kadane's min)
+* All negative edge case — totalSum == minSum → return maxSum only
+* Absolute sum — max(maxSum, abs(minSum))
+* Kadane's min — flip the comparison: if currentMin + nums[i] > nums[i] → reset
+
 ---
 
 ## ⚙️ Pattern Recognition
+
+| Pattern | Trigger Words |
+|---------|--------------|
+| Two Pointer | sorted array, pairs, palindrome, duplicates |
+| Partition | rearrange, group, sort colors, 0s 1s 2s |
+| Sliding Window | subarray, substring, window, contiguous |
+| Prefix Sum | range sum, subarray sum equals k, 2D matrix |
+| Kadane's | maximum subarray, circular, absolute sum |
+| Binary Search | sorted, find target, minimize maximum |
