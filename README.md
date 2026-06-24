@@ -150,7 +150,7 @@ Focused on:
 
 ---
 
-## 🔹 Phase 5 – Array Patterns 🚀 (Current)
+## 🔹 Phase 5 – Array Patterns ✅ COMPLETE
 
 Focused on:
 
@@ -159,14 +159,14 @@ Focused on:
 * Optimization techniques
 * Subarray-based problems
 * Advanced traversal thinking
+* Binary search on index and on answer space
 
 ### 📌 Topics Covered
 
 #### L1 — Two Pointer Patterns ✅
 
-* Opposite Ends (Valid Palindrome, Two Sum II, Container With Most Water, 3Sum, 4Sum, Trapping Rain Water)
-* Same Direction (Remove Duplicates, Move Zeroes, Squares of Sorted Array, Find Duplicate)
-* K Sum Pattern (Two Sum, 3Sum, 4Sum)
+* Opposite Ends (Valid Palindrome, Two Sum II, Container With Most Water, 3Sum, 4Sum, Trapping Rain Water, Reverse Sorted Array, Minimum Difference Pair)
+* Same Direction (Remove Duplicates I & II, Remove Element, Move Zeroes, Squares of Sorted Array, Find Duplicate)
 
 #### L2 — Partition Problems ✅
 
@@ -187,28 +187,118 @@ Focused on:
 * Prefix XOR (Single Number, XOR Queries, Subarray With Given XOR, Count Triplets Equal XOR)
 * 2D Prefix Sum (Range Sum Query 2D, Matrix Block Sum, Submatrices Sum To Target, Max Side Length Square)
 
-#### L5 — Subarray Algorithms 🔄
+#### L5 — Kadane's Algorithm ✅
 
-* Kadane's Algorithm ✅
-  * Maximum Subarray — LC 53 ✅
-  * Maximum Sum Circular Subarray — LC 918 ✅
-  * Maximum Absolute Sum of Any Subarray — LC 1749 ✅
-  * Longest Turbulent Subarray — LC 978 ⏭️ Low Priority
-* Max Product Subarray — LC 152 🔜
-* Subarray XOR / Sum Problems 🔜
+* Maximum Subarray — LC 53
+* Maximum Sum Circular Subarray — LC 918
+* Maximum Absolute Sum of Any Subarray — LC 1749
+* Longest Turbulent Subarray — LC 978 ⏭️ Low Priority (deprioritized, not on Striver's sheet)
 
-#### L6 — Binary Search Patterns
+#### L6 — Max Product Subarray ✅
 
-* Binary Search on Index
-* Binary Search on Answer
+* Maximum Product Subarray — LC 152
+* Maximum Product of Three Numbers — LC 628
+* Product Of Array Except Self — LC 238
 
-📁 `phase-5-array-patterns/`
+#### L7 — Subarray XOR And Sum ✅
+
+* Subarray Sum Equals K — LC 560
+* Subarray With Given XOR
+* Longest Subarray With Zero Sum
+* Subarrays With Bounded Maximum — LC 795
+
+#### L8 — Binary Search Patterns ✅
+
+* On_Index: Binary Search, First & Last Position, Search Rotated Array I & II, Find Minimum Rotated Array, Find Peak Element, Search 2D Matrix I & II
+* On_Answer: Koko Eating Bananas (LC 875), Capacity To Ship Packages (LC 1011), Split Array Largest Sum (LC 410)
+
+📁 `phase-5-array-patterns/` — **72 problems total**
+
+---
+
+## 🔹 Phase 6 – String Patterns 🚀 (Current)
+
+Focused on:
+
+* Sliding window applied to strings and character frequency
+* Anagram and permutation recognition
+* Two-pointer palindrome techniques
+* String compression and encoding
+* Pattern matching algorithms (KMP, Rabin-Karp, Z-Algorithm)
+
+### 📌 Topics Covered
+
+#### L1 — Sliding Window: Longest Substring
+
+* Longest Substring Without Repeating Characters
+* Longest Substring With At Most Two Distinct Characters
+* Longest Substring With At Most K Distinct Characters
+* Longest Repeating Character Replacement
+* Max Consecutive Ones III
+
+#### L2 — Sliding Window: Minimum Window
+
+* Minimum Window Substring
+* Minimum Window With All Characters Of Pattern
+* Smallest Range Covering Elements From K Lists
+
+#### L3 — Anagram / Permutation
+
+* Permutation In String
+* Find All Anagrams In A String
+* Group Anagrams
+* Valid Anagram
+* Check If Two Strings Are K-Anagrams
+
+#### L4 — Two Pointers: Palindrome Check
+
+* Valid Palindrome
+* Valid Palindrome II
+* Longest Palindromic Substring
+* Palindromic Substrings
+* Shortest Palindrome
+
+#### L5 — Two Pointers: Reverse Words / Characters
+
+* Reverse String
+* Reverse String II
+* Reverse Words In A String
+* Reverse Words In A String III
+* Rotate String
+
+#### L6 — String Compression
+
+* String Compression
+* Count And Say
+* Run Length Encoding
+* Encode And Decode Strings
+
+#### L7 — Pattern Matching: KMP
+
+* Find The Index Of The First Occurrence In A String
+* Repeated Substring Pattern
+* Shortest Palindrome (KMP approach)
+* String Matching In An Array
+
+#### L8 — Pattern Matching: Rabin-Karp
+
+* Repeated DNA Sequences
+* Longest Duplicate Substring
+* Rabin-Karp Pattern Search
+* Find All Good Strings
+
+#### L9 — Pattern Matching: Z-Algorithm
+
+* Pattern Searching Using Z-Algorithm
+* Minimum Characters To Add For Palindrome
+* Number Of Occurrences Of Pattern In Text
+
+📁 `phase-6-string-patterns/` — **38 problems planned**
 
 ---
 
 # 🔥 Upcoming Phases
 
-* String Patterns
 * Recursion
 * Stack
 * Queue
@@ -229,7 +319,7 @@ Focused on:
 * Write clean interview-ready solutions
 * Master core DSA concepts using Swift
 * Strengthen pattern recognition ability
-* Crack product-based company interview by September 2026
+* Crack product-based company interview by end of 2026
 
 ---
 
@@ -261,28 +351,24 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 5 – Array Patterns — L5 Subarray Algorithms (Kadane's) 🚀
+👉 Phase 6 – String Patterns — L1 Sliding Window: Longest Substring 🚀
 
 ### ✅ Completed
 
-* L1 Two Pointer — 14 problems
-* L2 Partition — 4 problems
-* L3 Sliding Window — 12 problems
-* L4 Prefix Based — 15 problems
+* Phase 0 — Logic Building
+* Phase 1 — Complexity
+* Phase 2 — Arrays
+* Phase 3 — Strings (foundational)
+* Phase 4 — HashMap Thinking
+* Phase 5 — Array Patterns (72 problems: Two Pointer, Partition, Sliding Window, Prefix-Based, Kadane's, Max Product Subarray, Subarray XOR/Sum, Binary Search)
 
 ### 🔄 In Progress
 
-* L5 Kadane's Algorithm — 3 of 4 problems done
-  * ✅ LC 53 — Maximum Subarray
-  * ✅ LC 918 — Maximum Sum Circular Subarray
-  * ✅ LC 1749 — Maximum Absolute Sum of Any Subarray
-  * ⏭️ LC 978 — Longest Turbulent Subarray (Low Priority)
+* Phase 6 — String Patterns (38 problems planned, starting with L1 Sliding Window)
 
 ### ⬜ Upcoming
 
-* L5 Max Product Subarray — LC 152
-* L5 Subarray XOR / Sum Problems
-* L6 Binary Search Patterns
+* Recursion → Stack → Queue → Linked List → Trees → Graphs → Heap → Greedy → Dynamic Programming
 
 ---
 
@@ -327,6 +413,21 @@ Each solution includes:
 * Absolute sum — max(maxSum, abs(minSum))
 * Kadane's min — flip the comparison: if currentMin + nums[i] > nums[i] → reset
 
+### Max Product Subarray
+* Track both currentMax AND currentMin at each step — a negative number can flip min into max
+* Save tempMax/tempMin before updating either, since both formulas need the pre-update values
+
+### Subarray XOR And Sum
+* Prefix XOR + HashMap follows the same shape as prefix sum + HashMap, just XOR instead of addition
+* map[0] = 1 initialization carries over from prefix sum pattern
+
+### Binary Search
+* On_Index: classic search over sorted array indices — mid = left + (right-left)/2 avoids overflow
+* On_Answer: search over the *answer space*, not array indices — define a feasibility check first
+* Feasibility check must be monotonic (false...false, true...true) for binary search to be valid
+* Never return immediately when feasibility is true — save as candidate answer, keep shrinking toward the minimum
+* Lower bound differs by problem: 1 if any value is theoretically valid (Koko), but max(array) if a value below it is structurally infeasible (Ship Capacity, Split Array)
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -338,7 +439,12 @@ Each solution includes:
 | Sliding Window | subarray, substring, window, contiguous |
 | Prefix Sum | range sum, subarray sum equals k, 2D matrix |
 | Kadane's | maximum subarray, circular, absolute, product |
-| Binary Search | sorted, find target, minimize maximum |
+| Max Product Subarray | product subarray, track max AND min |
+| Binary Search (Index) | sorted array, find target, rotated array, peak element |
+| Binary Search (Answer) | minimize the maximum, maximize the minimum, minimum speed/capacity/days |
+| String Sliding Window | longest/shortest substring, at most K distinct, character replacement |
+| Anagram/Permutation | rearrangement of characters, group by signature |
+| String Pattern Matching | find occurrence of pattern in text, repeated substring |
 
 ---
 
