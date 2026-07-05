@@ -74,14 +74,8 @@ func bruteForce(_ s: String, _ k: Int) -> Int {
                 hashMap[ch] = 1
             }
 
-            let windowSize = j - i + 1
-            let maxFreq    = hashMap.values.max() ?? 0
-
-            if windowSize - maxFreq <= k {
-                count = max(count, windowSize)
-            } else {
-                break
-            }
+            
+            
         }
     }
 
