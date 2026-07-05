@@ -216,7 +216,7 @@ Focused on:
 
 ---
 
-## 🔹 Phase 6 – String Patterns 🚀 (Current)
+## 🔹 Phase 6 – String Patterns ✅ COMPLETE
 
 Focused on:
 
@@ -224,11 +224,11 @@ Focused on:
 * Anagram and permutation recognition
 * Two-pointer palindrome techniques
 * String compression and encoding
-* Pattern matching algorithms (KMP, Rabin-Karp, Z-Algorithm)
+* Pattern matching algorithms (KMP, Rabin-Karp, Z-Algorithm) — concepts as interview talking points, high-frequency problems solved by hand
 
 ### 📌 Topics Covered
 
-#### L1 — Sliding Window: Longest Substring
+#### L1 — Sliding Window: Longest Substring ✅
 
 * Longest Substring Without Repeating Characters
 * Longest Substring With At Most Two Distinct Characters
@@ -236,13 +236,13 @@ Focused on:
 * Longest Repeating Character Replacement
 * Max Consecutive Ones III
 
-#### L2 — Sliding Window: Minimum Window
+#### L2 — Sliding Window: Minimum Window ✅
 
 * Minimum Window Substring
 * Minimum Window With All Characters Of Pattern
 * Smallest Range Covering Elements From K Lists
 
-#### L3 — Anagram / Permutation
+#### L3 — Anagram / Permutation ✅
 
 * Permutation In String
 * Find All Anagrams In A String
@@ -250,7 +250,7 @@ Focused on:
 * Valid Anagram
 * Check If Two Strings Are K-Anagrams
 
-#### L4 — Two Pointers: Palindrome Check
+#### L4 — Two Pointers: Palindrome Check ✅
 
 * Valid Palindrome
 * Valid Palindrome II
@@ -258,7 +258,7 @@ Focused on:
 * Palindromic Substrings
 * Shortest Palindrome
 
-#### L5 — Two Pointers: Reverse Words / Characters
+#### L5 — Two Pointers: Reverse Words / Characters ✅
 
 * Reverse String
 * Reverse String II
@@ -266,43 +266,45 @@ Focused on:
 * Reverse Words In A String III
 * Rotate String
 
-#### L6 — String Compression
+#### L6 — String Compression ✅
 
 * String Compression
 * Count And Say
 * Run Length Encoding
 * Encode And Decode Strings
 
-#### L7 — Pattern Matching: KMP
+#### L7 — Pattern Matching: KMP ✅
 
-* Find The Index Of The First Occurrence In A String
-* Repeated Substring Pattern
-* Shortest Palindrome (KMP approach)
-* String Matching In An Array
+* Find The Index Of The First Occurrence In A String ✅ solved
+* Repeated Substring Pattern ✅ solved
+* Shortest Palindrome (KMP approach) 📖 reference
+* String Matching In An Array ✅ solved
 
-#### L8 — Pattern Matching: Rabin-Karp
+#### L8 — Pattern Matching: Rabin-Karp ✅
 
-* Repeated DNA Sequences
-* Longest Duplicate Substring
-* Rabin-Karp Pattern Search
-* Find All Good Strings
+* Repeated DNA Sequences ✅ solved (+ cold rewrite retention check)
+* Longest Duplicate Substring 📖 reference
+* Rabin-Karp Pattern Search 📖 reference
+* Find All Good Strings 📖 concept-only
 
-#### L9 — Pattern Matching: Z-Algorithm
+#### L9 — Pattern Matching: Z-Algorithm ✅
 
-* Pattern Searching Using Z-Algorithm
-* Minimum Characters To Add For Palindrome
-* Number Of Occurrences Of Pattern In Text
+* Pattern Searching Using Z-Algorithm 📖 reference
+* Minimum Characters To Add For Palindrome 📖 reference
+* Number Of Occurrences Of Pattern In Text 📖 reference
 
-📁 `phase-6-string-patterns/` — **38 problems planned**
+📖 = read-not-derived reference file: concept, traps, and interview Q&A documented; cold implementation deliberately not an objective. Prep hours go where questions exist.
+
+📁 `phase-6-string-patterns/` — **38 problems total (problems 73–110)**
 
 ---
 
 # 🔥 Upcoming Phases
 
-* Recursion
+* Linked List
 * Stack
 * Queue
-* Linked List
+* Recursion
 * Trees
 * Graphs
 * Heap / Priority Queue
@@ -351,7 +353,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 6 – String Patterns — L1 Sliding Window: Longest Substring 🚀
+👉 Phase 7 – Linked List / Stack — starting with LC 206 Reverse Linked List 🚀
 
 ### ✅ Completed
 
@@ -361,14 +363,15 @@ Each solution includes:
 * Phase 3 — Strings (foundational)
 * Phase 4 — HashMap Thinking
 * Phase 5 — Array Patterns (72 problems: Two Pointer, Partition, Sliding Window, Prefix-Based, Kadane's, Max Product Subarray, Subarray XOR/Sum, Binary Search)
+* Phase 6 — String Patterns (38 problems: Sliding Window, Anagram/Permutation, Palindromes, Reversal, Compression, Pattern Matching KMP/Rabin-Karp/Z)
 
 ### 🔄 In Progress
 
-* Phase 6 — String Patterns (38 problems planned, starting with L1 Sliding Window)
+* Phase 7 — Linked List / Stack (pointer reversal, fast/slow pointers, cycle detection, merge patterns, monotonic stack)
 
 ### ⬜ Upcoming
 
-* Recursion → Stack → Queue → Linked List → Trees → Graphs → Heap → Greedy → Dynamic Programming
+* Queue → Recursion → Trees → Graphs → Heap → Greedy → Dynamic Programming
 
 ---
 
@@ -428,6 +431,38 @@ Each solution includes:
 * Never return immediately when feasibility is true — save as candidate answer, keep shrinking toward the minimum
 * Lower bound differs by problem: 1 if any value is theoretically valid (Koko), but max(array) if a value below it is structurally infeasible (Ship Capacity, Split Array)
 
+### Substring Search (Forward Scan)
+* Substring matching needs FORWARD scan — not converging two pointer
+* Outer loop bound 0...(n - m) — only starts where needle still fits
+* Compare chars[i + j] == needleChars[j] by index — never build strings in loops
+* Default return -1, empty needle → 0
+
+### Repeated Patterns
+* Unit length must divide n evenly and can be at most n/2
+* Verify in place: chars[i] == chars[i % len]
+* s + s trick: repeated string appears inside (s+s) with first and last chars dropped
+* Guard n < 2 before 1...(n/2) — invalid range crashes at runtime
+
+### Fixed Window + HashMap Dedupe
+* Dedupe trigger: append exactly on the 1 → 2 count transition
+* Check newCount AFTER incrementing — old count fires on 3rd occurrence
+* Persist the incremented count back to the map — or counts freeze at 1
+* Overlapping windows count — advance by 1 always, never by window size
+
+### KMP / LPS (Read Not Derived)
+* lps[i] = longest proper prefix that is also a suffix ending at i
+* Meaning: "on mismatch, how much have I secretly already re-matched?"
+* Store border LENGTH not index; fallback branch must NOT advance index
+* Search jump is j = lps[j-1] — text pointer never moves backwards
+* s + "#" + reversed(s) → LPS last value = longest palindromic prefix
+
+### Rabin-Karp / Z-Algorithm (Read Not Derived)
+* Rolling hash slide: subtract leaving char × base^(m-1), multiply by base, add entering char
+* + modulus before % — negative hash is THE classic rolling hash bug
+* Hash equality is not string equality — always verify on match (collisions)
+* Rabin-Karp's real edge: MULTI-pattern search, not single pattern
+* Z looks FORWARD from i; LPS looks at borders ENDING at i
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -444,7 +479,11 @@ Each solution includes:
 | Binary Search (Answer) | minimize the maximum, maximize the minimum, minimum speed/capacity/days |
 | String Sliding Window | longest/shortest substring, at most K distinct, character replacement |
 | Anagram/Permutation | rearrangement of characters, group by signature |
-| String Pattern Matching | find occurrence of pattern in text, repeated substring |
+| Forward Scan Search | first occurrence, strStr, needle in haystack |
+| Repeated Unit | repeated substring, constructed by copies, s + s trick |
+| Fixed Window + HashMap | fixed-length substrings occurring more than once |
+| KMP (talking point) | "can you do better than O(n·m)?" |
+| Binary Search + Rolling Hash | longest duplicate, variable-length repeats — explain, don't code |
 
 ---
 
@@ -461,6 +500,7 @@ It is about:
 * Learning clean coding practices
 * Developing scalable thinking
 * Understanding patterns deeply instead of memorizing solutions
+* Read-only code doesn't stick; derived code does — attempt first, always
 
 ---
 

@@ -1,253 +1,128 @@
-# 📒 Phase 5 — Array Patterns ✅ COMPLETE
+# 📒 Phase 6 — String Patterns ✅ COMPLETE
 
 ---
 
 ## 🧠 Objective
 
-Build strong problem-solving skills using core array patterns by focusing on:
+Build strong problem-solving skills using core string patterns by focusing on:
 
-* Two Pointer — opposite ends and same direction
-* K Sum patterns — Two Sum, 3Sum, 4Sum
-* Partition — Dutch National Flag
-* Sliding Window — fixed size, variable size, monotonic window
-* Prefix Sum — 1D, XOR, 2D
-* Kadane's Algorithm and subarray product/sum patterns
-* Binary Search — on index and on answer
-* Pattern recognition across problems
-* Reducing O(n²) / O(n³) to O(n) or O(log n) solutions
+* Sliding Window on strings — minimum window, multi-list range
+* Anagram and Permutation — frequency map matching
+* Palindromes — expand around center
+* Two Pointer Reversal — in-place segment reversal
+* Substring Search — forward scan two pointer
+* Fixed Window + HashMap — frequency tracking with dedupe
+* Pattern Matching concepts — KMP / LPS, Rabin-Karp rolling hash, Z-Algorithm
+* Knowing when an algorithm is a coding expectation vs an interview talking point
+* Reducing string-building O(n) extra space solutions to in-place index-based solutions
 
 This phase focuses on understanding how to:
-👉 Identify which pattern a problem belongs to — not just memorise solutions.
+👉 Solve the high-frequency string problems by hand, and explain the advanced algorithms in two sentences — prep hours go where questions exist.
 
 ---
 
 ## 📌 Topics Covered
 
-### L1 — Two Pointer
+### L1 — Sliding Window
+* Minimum Window Substring — LC 76
+* Smallest Range Covering Elements from K Lists — LC 632
 
-#### Opposite Ends
-* Valid Palindrome
-* Two Sum II
-* Container With Most Water
-* 3Sum
-* 4Sum
-* Trapping Rain Water
-* Reverse Sorted Array In Place
-* Minimum Difference Pair
+### L2 — Anagram / Permutation
+* Permutation In String — LC 567
+* Find All Anagrams In A String — LC 438
+* Group Anagrams — LC 49
+* Valid Anagram — LC 242
 
-#### Same Direction
-* Remove Duplicates From Sorted Array
-* Remove Duplicates From Sorted Array II
-* Remove Element
-* Move Zeroes
-* Squares of a Sorted Array
-* Find The Duplicate Number
+### L3 — Palindromes
+* Expand Around Center patterns
+* Shortest Palindrome — LC 214 (KMP — read-not-derived)
 
-### L2 — Partition (Dutch National Flag)
-* Sort Colors
-* Partition Array By Odd And Even
-* Partition Array Around A Pivot
-* Wiggle Sort II
+### L4 — Two Pointer Reversal
+* Reverse String — LC 344
+* Reverse String II — LC 541
+* Reverse Words In A String — LC 151
+* Reverse Words In A String III — LC 557
+* Rotate String — LC 796
+* String Compression — LC 443
 
-### L3 — Sliding Window
+### L7 — Pattern Matching (KMP)
+* Find The Index Of The First Occurrence In A String — LC 28
+* Repeated Substring Pattern — LC 459
+* Shortest Palindrome — LC 214 📖
+* String Matching In An Array — LC 1408
 
-#### Fixed Size
-* Permutation In String
-* Sliding Window Maximum (Fixed)
+### L8 — Pattern Matching (Rabin-Karp)
+* Repeated DNA Sequences — LC 187
+* Longest Duplicate Substring — LC 1044 📖
+* Rabin-Karp Pattern Search 📖
+* Find All Good Strings — LC 1397 📖
 
-#### Variable Size
-* Minimum Size Subarray Sum
-* Longest Substring Without Repeating Characters
-* Longest Substring With At Most K Distinct
-* Fruits Into Baskets
-* Binary Subarrays With Sum
-* Subarrays With K Different Integers
-* Minimum Window Substring
-* Longest Repeating Character Replacement
-
-#### Monotonic Window
-* Sliding Window Maximum
-* Longest Continuous Subarray Absolute Diff Limit
-
-### L4 — Prefix Based
-
-#### Prefix Sum
-* Range Sum Query Immutable
-* Find Pivot Index
-* Subarray Sum Equals K
-* Continuous Subarray Sum
-* Product Of Array Except Self
-* Count Subarrays With Equal 0s And 1s
-* Number Of Subarrays With Sum In Range
-
-#### Prefix XOR
-* Single Number
-* XOR Queries Of A Subarray
-* Subarray With Given XOR
-* Count Triplets With Equal XOR
-
-#### Prefix 2D
-* Range Sum Query 2D Immutable
-* Matrix Block Sum
-* Number Of Submatrices That Sum To Target
-* Max Side Length Of Square
-
-### L5 — Kadane's Algorithm
-* Maximum Subarray — LC 53
-* Maximum Sum Circular Subarray — LC 918
-* Maximum Absolute Sum of Any Subarray — LC 1749
-* Longest Turbulent Subarray — LC 978 ⏭️ Low Priority (deprioritized, not on Striver's sheet)
-
-### L6 — Max Product Subarray
-* Maximum Product Subarray — LC 152
-* Maximum Product of Three Numbers — LC 628
-* Product Of Array Except Self — LC 238
-
-### L7 — Subarray XOR And Sum
-* Subarray Sum Equals K — LC 560
-* Subarray With Given XOR
-* Longest Subarray With Zero Sum
-* Subarrays With Bounded Maximum — LC 795
-
-### L8 — Binary Search Patterns
-
-#### On_Index
-* Binary Search — LC 704
-* Find First And Last Position — LC 34
-* Search In Rotated Sorted Array — LC 33
-* Search In Rotated Sorted Array II — LC 81
-* Find Minimum In Rotated Sorted Array — LC 153
-* Find Peak Element — LC 162
-* Search A 2D Matrix — LC 74
-* Search A 2D Matrix II — LC 240
-
-#### On_Answer
-* Koko Eating Bananas — LC 875
-* Capacity To Ship Packages Within D Days — LC 1011
-* Split Array Largest Sum — LC 410
+### L9 — Pattern Matching (Z-Algorithm)
+* Pattern Searching Using Z-Algorithm 📖
+* Minimum Characters To Add For Palindrome 📖
+* Number Of Occurrences Of Pattern In Text 📖
 
 ---
 
 ## 🧩 Problems Practiced
 
-### L1 — Two Pointer (14 problems) ✅
+> ⚠️ Fill in exact problem numbers for 73–99 from the repo folder names — L7–L9 numbering below is final.
 
-**Opposite Ends**
-* 01 Valid Palindrome
-* 02 Two Sum II
-* 03 Container With Most Water
-* 04 3Sum
-* 05 4Sum
-* 06 Trapping Rain Water
-* 07 Reverse Sorted Array In Place
-* 08 Minimum Difference Pair
+### L1 — Sliding Window ✅
+* Minimum Window Substring — LC 76
+* Smallest Range Covering Elements from K Lists — LC 632
 
-**Same Direction**
-* 09 Remove Duplicates From Sorted Array
-* 10 Remove Duplicates From Sorted Array II
-* 11 Remove Element
-* 12 Move Zeroes
-* 13 Squares of a Sorted Array
-* 14 Find The Duplicate Number
+### L2 — Anagram / Permutation ✅
+* Permutation In String — LC 567
+* Find All Anagrams In A String — LC 438
+* Group Anagrams — LC 49
+* Valid Anagram — LC 242
 
-### L2 — Partition (4 problems) ✅
-* 15 Sort Colors
-* 16 Partition Array By Odd And Even
-* 17 Partition Array Around A Pivot
-* 18 Wiggle Sort II
+### L3 — Palindromes ✅
+* Expand Around Center cluster
+* Shortest Palindrome — LC 214 📖 read-not-derived
 
-### L3 — Sliding Window (12 problems) ✅
+### L4 — Two Pointer Reversal (6 problems) ✅
+* Reverse String — LC 344
+* Reverse String II — LC 541
+* Reverse Words In A String — LC 151
+* Reverse Words In A String III — LC 557
+* Rotate String — LC 796
+* String Compression — LC 443 (solved first attempt)
 
-**Fixed Size**
-* 19 Permutation In String
-* 20 Sliding Window Maximum (Fixed)
+### L7 — Pattern Matching KMP (4 problems) ✅
+* 100 Find The Index Of The First Occurrence In A String — LC 28 ✅
+* 101 Repeated Substring Pattern — LC 459 ✅
+* 102 Shortest Palindrome — LC 214 📖
+* 103 String Matching In An Array — LC 1408 ✅
 
-**Variable Size**
-* 21 Minimum Size Subarray Sum
-* 22 Longest Substring Without Repeating Characters
-* 23 Longest Substring With At Most K Distinct
-* 24 Fruits Into Baskets
-* 25 Binary Subarrays With Sum
-* 26 Subarrays With K Different Integers
-* 27 Minimum Window Substring
-* 28 Longest Repeating Character Replacement
+### L8 — Pattern Matching Rabin-Karp (4 problems) ✅
+* 104 Repeated DNA Sequences — LC 187 ✅ (+ cold rewrite retention check)
+* 105 Longest Duplicate Substring — LC 1044 📖
+* 106 Rabin-Karp Pattern Search 📖
+* 107 Find All Good Strings — LC 1397 📖 concept-only
 
-**Monotonic Window**
-* 29 Sliding Window Maximum
-* 30 Longest Continuous Subarray Absolute Diff Limit
+### L9 — Pattern Matching Z-Algorithm (3 problems) ✅
+* 108 Pattern Searching Using Z-Algorithm 📖
+* 109 Minimum Characters To Add For Palindrome 📖
+* 110 Number Of Occurrences Of Pattern In Text 📖
 
-### L4 — Prefix Based (15 problems) ✅
-
-**Prefix Sum**
-* 31 Range Sum Query Immutable
-* 32 Find Pivot Index
-* 33 Subarray Sum Equals K
-* 34 Continuous Subarray Sum
-* 35 Product Of Array Except Self
-* 36 Count Subarrays With Equal 0s And 1s
-* 37 Number Of Subarrays With Sum In Range
-
-**Prefix XOR**
-* 38 Single Number
-* 39 XOR Queries Of A Subarray
-* 40 Subarray With Given XOR
-* 41 Count Triplets With Equal XOR
-
-**Prefix 2D**
-* 42 Range Sum Query 2D Immutable
-* 43 Matrix Block Sum
-* 44 Number Of Submatrices That Sum To Target
-* 45 Max Side Length Of Square
-
-### L5 — Kadane's Algorithm (4 problems) ✅
-* 51 Maximum Subarray — LC 53
-* 52 Maximum Sum Circular Subarray — LC 918
-* 53 Maximum Absolute Sum of Any Subarray — LC 1749
-* 54 Longest Turbulent Subarray — LC 978 ⏭️ Low Priority
-
-### L6 — Max Product Subarray (3 problems) ✅
-* 55 Maximum Product Subarray — LC 152
-* 56 Maximum Product of Three Numbers — LC 628
-* 57 Product Of Array Except Self — LC 238
-
-### L7 — Subarray XOR And Sum (4 problems) ✅
-* 58 Subarray Sum Equals K — LC 560
-* 59 Subarray With Given XOR
-* 60 Longest Subarray With Zero Sum
-* 61 Subarrays With Bounded Maximum — LC 795
-
-### L8 — Binary Search (11 problems) ✅
-
-**On_Index**
-* 62 Binary Search — LC 704
-* 63 Find First And Last Position — LC 34
-* 64 Search In Rotated Sorted Array — LC 33
-* 65 Search In Rotated Sorted Array II — LC 81
-* 66 Find Minimum In Rotated Sorted Array — LC 153
-* 67 Find Peak Element — LC 162
-* 68 Search A 2D Matrix — LC 74
-* 69 Search A 2D Matrix II — LC 240
-
-**On_Answer**
-* 70 Koko Eating Bananas — LC 875
-* 71 Capacity To Ship Packages Within D Days — LC 1011
-* 72 Split Array Largest Sum — LC 410
+✅ solved by hand (brute force + optimised) · 📖 read-not-derived reference file (concept + traps + interview Q&A; cold implementation deliberately not an objective)
 
 ---
 
-## ✅ Phase 5 Total: 72 Problems Completed
+## ✅ Phase 6 Total: Problems 73–110 Completed
 
 ```
-L1 Two Pointer                14
-L2 Partition                   4
-L3 Sliding Window              12
-L4 Prefix Based                15
-L5 Kadane's Algorithm           4
-L6 Max Product Subarray         3
-L7 Subarray XOR And Sum         4
-L8 Binary Search               11
+L1 Sliding Window               2
+L2 Anagram / Permutation        4
+L3 Palindromes                  (fill from repo)
+L4 Two Pointer Reversal         6
+L7 Pattern Matching KMP         4   (3 solved + 1 reference)
+L8 Pattern Matching Rabin-Karp  4   (1 solved + 3 reference)
+L9 Pattern Matching Z-Algorithm 3   (3 reference)
 ──────────────────────────────────
-Total                          72
+Total                          38   (73–110)
 ```
 
 ---
@@ -262,66 +137,64 @@ Total                          72
 6. Optimize using the right technique
 7. Analyze time and space complexity
 8. Handle edge cases properly
+9. For advanced algorithms — decide: code it, or explain it?
 
 ---
 
 ## ⚙️ Key Learnings
 
-### Two Pointer
-* Sort first when duplicates need to be skipped
-* left < right vs left <= right — always check if pointers can meet
-* swapAt takes indices not values
-* Skip duplicate i before loop, skip duplicate left/right after match
-* The smaller side is always the bottleneck
-
-### Partition
-* Dutch National Flag — three pointers low, mid, high
-* mid doesn't move after swap with high — unseen element
-* mid moves after swap with low — already seen element
-
-### Sliding Window
-* expand right → shrink left when invalid
-* while for minimum window problems
-* if for maximum window problems
-* exactly(k) = atMost(k) - atMost(k-1)
+### Sliding Window on Strings
+* expand right → shrink left when invalid — same shape as array windows
+* Character frequency map + "formed count" instead of numeric sums
 * Remove key from HashMap when count hits 0
-* Deque stores indices not values
 
-### Prefix Sum
-* Build prefix array once → answer range queries in O(1)
-* prefix[i] = prefix[i-1] + nums[i-1]
-* sumRange(l, r) = prefix[r+1] - prefix[l]
-* Init map [0: 1] for frequency, [0: -1] for index problems
-* Replace 0 → -1 to convert equal 0s and 1s to sum = 0
-* Same remainder twice → subarray between is multiple of k
-* Product except self → left pass × right pass, no division
-* XOR range query → prefix[r] XOR prefix[l-1]
-* 2D prefix → row-by-row compression then column prefix
+### Anagram / Permutation
+* Fixed window size = pattern length — slide by 1, update two map entries
+* Compare frequency maps, or track a matched-characters counter
+* Canonical key (sorted chars or count signature) groups anagrams
 
-### Kadane's Algorithm
-* Initialize currentSum and maxSum with nums[0] — not 0 or Int.min
-* At each index — extend or fresh start: if currentSum + nums[i] < nums[i] → reset
-* Circular subarray — totalSum - minSubarray (Kadane's min)
-* All negative edge case — totalSum == minSum → return maxSum only
-* Absolute sum — max(maxSum, abs(minSum))
-* Kadane's min — flip the comparison: if currentMin + nums[i] > nums[i] → reset
+### Palindromes
+* Expand around center — two calls per index (odd and even centers)
+* Converging two pointer for validity checks only — expansion goes outward
 
-### Max Product Subarray
-* Track both currentMax AND currentMin at each step — a negative number can flip min into max
-* Save tempMax/tempMin before updating either, since both formulas need the pre-update values
-* currentMax = max(nums[i], currentMax*nums[i], currentMin*nums[i]) — same for currentMin with the opposite extremes
+### Two Pointer Reversal
+* Segment-reverse helper — one function, reused across the whole cluster
+* Reverse whole string then reverse each word — LC 151 shape
+* Rotation check: rotated s is always a substring of s + s
 
-### Subarray XOR And Sum
-* Prefix XOR + HashMap — same shape as prefix sum + HashMap, just XOR instead of addition
-* map[0] = 1 initialization carries over from prefix sum pattern
+### Substring Search (Forward Scan)
+* Substring matching needs FORWARD scan — not converging two pointer
+* Outer loop bound 0...(n - m) — only starts where needle still fits
+* Compare chars[i + j] == needleChars[j] by index — never build strings in loops
+* Default return -1, empty needle → 0
 
-### Binary Search
-* On_Index: classic search over sorted array indices — mid = left + (right-left)/2 avoids overflow
-* On_Answer: search over the *answer space*, not array indices — define feasibility check first
-* Feasibility check must be monotonic (false...false, true...true) for binary search to be valid
-* Never return immediately when feasibility is true — save as candidate answer, keep shrinking toward the minimum (or maximum)
-* Lower bound differs by problem: 1 if any value is theoretically valid (Koko), but max(array) if a value below it is structurally infeasible (Ship Capacity, Split Array)
-* canFinish / canShip / canSplit helpers all follow the same template — only what "fits in one unit" means changes
+### Repeated Patterns
+* Unit length must divide n evenly and can be at most n/2
+* Verify in place: chars[i] == chars[i % len]
+* s + s trick: repeated string appears inside (s+s) with first and last chars dropped
+* Guard n < 2 before 1...(n/2) — invalid range crashes at runtime
+
+### Fixed Window + HashMap
+* Dedupe trigger: append exactly on the 1 → 2 count transition
+* Check newCount AFTER incrementing — old count fires on 3rd occurrence
+* Persist the incremented count back to the map — or counts freeze at 1
+* Overlapping windows count — advance by 1 always, never by window size
+
+### KMP / LPS (Read Not Derived)
+* lps[i] = longest proper prefix that is also a suffix ending at i
+* Meaning: "on mismatch, how much have I secretly already re-matched?"
+* Store border LENGTH not index; fallback branch must NOT advance index
+* Search jump is j = lps[j-1] — text pointer never moves backwards
+* s + "#" + reversed(s) → LPS last value = longest palindromic prefix
+* The "#" separator caps the border at s's true length
+
+### Rabin-Karp / Z-Algorithm (Read Not Derived)
+* Rolling hash slide: subtract leaving char × base^(m-1), multiply by base, add entering char
+* + modulus before % — negative hash is THE classic rolling hash bug
+* Hash equality is not string equality — always verify on match
+* Rabin-Karp's real edge: MULTI-pattern search, not single pattern
+* Z looks FORWARD from i (prefix match starting at i); LPS looks at borders ENDING at i
+* Binary search on answer + rolling hash = Longest Duplicate Substring (monotonic predicate from Phase 5)
 
 ---
 
@@ -329,19 +202,26 @@ Total                          72
 
 | Pattern | Trigger Words |
 |---------|--------------|
-| Two Pointer | sorted array, pairs, palindrome, duplicates |
-| Partition | rearrange, group, sort colors, 0s 1s 2s |
-| Sliding Window | subarray, substring, window, contiguous |
-| Prefix Sum | range sum, subarray sum equals k, 2D matrix |
-| Kadane's | maximum subarray, circular, absolute sum |
-| Max Product Subarray | product subarray, track max AND min |
-| Subarray XOR/Sum | prefix XOR/sum + HashMap, subarray equals target |
-| Binary Search (Index) | sorted array, find target, rotated array, peak element |
-| Binary Search (Answer) | minimize the maximum, maximize the minimum, minimum speed/capacity/days |
+| Sliding Window (string) | minimum window, substring containing, covering |
+| Anagram / Permutation | anagram, permutation, rearrangement, same letters |
+| Expand Around Center | longest palindromic substring, count palindromes |
+| Two Pointer Reversal | reverse in place, reverse words, rotate string |
+| Forward Scan Search | first occurrence, strStr, needle in haystack |
+| Repeated Unit | repeated substring, constructed by copies |
+| Fixed Window + HashMap | fixed-length substrings occurring more than once |
+| KMP (talking point) | "can you do better than O(n·m)?" |
+| Binary Search + Rolling Hash | longest duplicate, variable-length repeats (explain, don't code) |
+| s + s Trick | rotation, repeated pattern |
+
+---
+
+## 🔑 Biggest Meta-Lesson
+
+**Read-only code doesn't stick; derived code does.** The #104 cold rewrite failed at exactly the two lines that were read rather than derived. Attempt-first is how retention works.
 
 ---
 
 ## 🎯 Next Phase
 
-**Phase 6 — String Patterns** 🚀
-Sliding window on strings, anagram/permutation problems, palindrome two-pointer techniques, string compression, and pattern matching (KMP, Rabin-Karp, Z-Algorithm).
+**Phase 7 — Linked List / Stack** 🚀
+Pointer reversal, fast/slow pointers, cycle detection, merge patterns, monotonic stack, and stack-based parsing — starting with LC 206 Reverse Linked List, the most-asked linked list question at every target company.
