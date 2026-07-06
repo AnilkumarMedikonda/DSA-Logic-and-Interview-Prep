@@ -204,7 +204,7 @@ Focused on:
 
 * Subarray Sum Equals K — LC 560
 * Subarray With Given XOR
-* Longest Subarray With Zero Sum
+* Longest Subarray with 0 Sum
 * Subarrays With Bounded Maximum — LC 795
 
 #### L8 — Binary Search Patterns ✅
@@ -299,18 +299,28 @@ Focused on:
 
 ---
 
-# 🔥 Upcoming Phases
+# 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
-* Linked List
-* Stack
-* Queue
-* Recursion
-* Trees
-* Graphs
-* Heap / Priority Queue
-* Greedy Algorithms
-* Dynamic Programming
-* Advanced DSA Patterns
+Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
+
+| Phase | Topic | Problems | Highlights |
+|-------|-------|----------|------------|
+| 7 | Stack | 111–132 | Valid Parentheses, Min Stack, Daily Temperatures, Monotonic Stack |
+| 8 | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
+| 9 | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
+| 10 | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
+| 11 | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
+| 12 | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
+| 13 | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary |
+| 14 | Trie | 220–223 | Implement Trie, Word Search II |
+| 15 | Backtracking | 224–232 | Subsets, Permutations, Combination Sum, N-Queens |
+| 16 | Greedy | 233–238 | Jump Game, Gas Station, Partition Labels |
+| 17 | Intervals | 239–242 | Merge Intervals, Insert Interval, Meeting Rooms I & II |
+| 18 | Matrix | 243–246 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
+| 19 | Dynamic Programming | 247–260 | Climbing Stairs, Coin Change, LIS, Word Break, LCS, Edit Distance |
+| 20 | Bit Manipulation | 261–264 | Number of 1 Bits, Counting Bits, Reverse Bits |
+
+Full folder-level breakdown lives in `ROADMAP.md`.
 
 ---
 
@@ -353,7 +363,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 7 – Linked List / Stack — starting with LC 206 Reverse Linked List 🚀
+👉 Phase 7 – Stack — starting with 111_Stack_Basics_And_Operations, then Valid Parentheses (LC 20) 🚀
 
 ### ✅ Completed
 
@@ -367,11 +377,11 @@ Each solution includes:
 
 ### 🔄 In Progress
 
-* Phase 7 — Linked List / Stack (pointer reversal, fast/slow pointers, cycle detection, merge patterns, monotonic stack)
+* Phase 7 — Stack (basics, Valid Parentheses, Min Stack, monotonic stack patterns) · Branch: `feature/stack-queue-patterns`
 
 ### ⬜ Upcoming
 
-* Queue → Recursion → Trees → Graphs → Heap → Greedy → Dynamic Programming
+* Queue & Deque → Linked List → Trees → BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
