@@ -113,4 +113,4 @@ Biggest meta-lesson: **read-only code doesn't stick; derived code does.** The #1
 
 ---
 
-*Next phase: Linked List / Stack → Trees → Graphs → DP → mock interviews (target: August 2026)*
+*Next: Phase 7 Stack (111–132) → Queue & Deque → Linked List → Trees → BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → DP → Bit Manipulation — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from August. Target: August 2026.*
