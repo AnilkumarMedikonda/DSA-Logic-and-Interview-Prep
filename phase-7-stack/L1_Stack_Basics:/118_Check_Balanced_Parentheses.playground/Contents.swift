@@ -85,7 +85,7 @@ func isBalanced(_ input: String) -> Bool {
             if stack.popLast() != expected {
                 return false
             }
-        }
+        }   
     }
 
     return stack.isEmpty
