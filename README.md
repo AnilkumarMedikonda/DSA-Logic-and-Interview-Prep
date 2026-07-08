@@ -299,13 +299,59 @@ Focused on:
 
 ---
 
+## 🔹 Phase 7 – Stack ✅ COMPLETE
+
+Focused on:
+
+* Stack fundamentals and value-vs-reference semantics in Swift
+* Monotonic stack — one template, three knobs, seven problems
+* Advanced patterns: collision simulation, inverted stacks, context stacks, greedy pops
+* Retention verification via cold rewrite
+
+### 📌 Topics Covered
+
+#### L1 — Stack Basics ✅
+
+* Stack Basics & Operations (guarded pops, Stack struct)
+* Stack Using Array (class implementation)
+* Reverse String Using Stack
+* Reverse Array Using Stack
+* Copy Stack (double-reversal via temp)
+* Print Without Modifying (3 approaches)
+* Remove All Elements (value-copy vs `inout` mutation lesson)
+
+#### L2 — Interview Stack ✅
+
+* Balanced Parentheses (brute-force removal-order study)
+* Valid Parentheses — LC 20 ⭐ (cold-verified)
+* Min Stack — LC 155 ⭐ (augmented stack, O(1) getMin)
+* Next Greater Element I — LC 496
+* Daily Temperatures — LC 739 ⭐
+* Online Stock Span — LC 901 (cold-derived)
+* Evaluate Reverse Polish Notation — LC 150 ⭐ (pop-order trap)
+* Sort A Stack
+
+#### L3 — Advanced Monotonic Stack ✅
+
+* Asteroid Collision — LC 735 (fight-and-pop)
+* Largest Rectangle In Histogram — LC 84 🔥 Hard (monotonic increasing + sentinel flush)
+* Car Fleet — LC 853 (inverted grow-only stack)
+* Basic Calculator — LC 224 🔥 Hard (paused-context stack — zero-logic-bug derivation)
+* Next Greater Element II — LC 503 📖 reference (circular 2n trick documented)
+* Remove K Digits — LC 402 (greedy + monotonic stack)
+* Largest Rectangle Revision (cold rewrite — passed; push-half slip logged for Trees-phase re-touch)
+
+📁 `phase-7-stack/` — **22 problems total (problems 111–132) · window Jul 7–10, closed Jul 8**
+
+---
+
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
 
 | Phase | Topic | Problems | Highlights |
 |-------|-------|----------|------------|
-| 7 | Stack | 111–132 | Valid Parentheses, Min Stack, Daily Temperatures, Monotonic Stack |
+| 7 ✅ | Stack | 111–132 | Valid Parentheses, Min Stack, Daily Temperatures, Monotonic Stack |
 | 8 | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
 | 9 | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
 | 10 | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
@@ -363,7 +409,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 7 – Stack — starting with 111_Stack_Basics_And_Operations, then Valid Parentheses (LC 20) 🚀
+👉 Phase 8 – Queue & Deque — starting with problem 133 🚀
 
 ### ✅ Completed
 
@@ -374,14 +420,15 @@ Each solution includes:
 * Phase 4 — HashMap Thinking
 * Phase 5 — Array Patterns (72 problems: Two Pointer, Partition, Sliding Window, Prefix-Based, Kadane's, Max Product Subarray, Subarray XOR/Sum, Binary Search)
 * Phase 6 — String Patterns (38 problems: Sliding Window, Anagram/Permutation, Palindromes, Reversal, Compression, Pattern Matching KMP/Rabin-Karp/Z)
+* Phase 7 — Stack (22 problems: basics, Valid Parentheses, Min Stack, monotonic stack template, Largest Rectangle, Basic Calculator, greedy stack — closed 2 days early)
 
 ### 🔄 In Progress
 
-* Phase 7 — Stack (basics, Valid Parentheses, Min Stack, monotonic stack patterns) · Branch: `feature/stack-queue-patterns`
+* Phase 8 — Queue & Deque (Queue via Stacks, Circular Queue, Sliding Window Maximum) · Branch: `feature/stack-queue-patterns`
 
 ### ⬜ Upcoming
 
-* Queue & Deque → Linked List → Trees → BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+* Linked List → Trees → BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -473,6 +520,33 @@ Each solution includes:
 * Rabin-Karp's real edge: MULTI-pattern search, not single pattern
 * Z looks FORWARD from i; LPS looks at borders ENDING at i
 
+### Stack Fundamentals
+* removeLast() CRASHES on empty — pop() -> Int? optional return IS the crash guard
+* End of array = top of stack — front-of-array operations are O(n)
+* Struct stacks copy on assignment — mutating the original needs inout or a class
+* Final isEmpty check catches unclosed openers — returning plain true is the Valid Parentheses bug
+
+### Monotonic Stack
+* The waiting-room model: elements wait on the stack for their answer; the incoming element resolves everyone it beats
+* while let top = stack.last, condition — one binding replaces isEmpty guard AND force unwrap (house idiom)
+* Three knobs turn one template into seven problems: comparison direction, values vs indices, record-on-pop type
+* Amortized O(n) despite nested while — each element pushes and pops at most once
+* Push INDICES when width/span/position math follows (Largest Rectangle, NGE II, Stock Span)
+* THE INVARIANT HAS TWO HALVES — pop violators, then PUSH; the cold rewrite dropped the push and returned 0 for everything
+* Strict vs non-strict comparison is always a deliberate choice — > vs >= changes [3,3,3] and "112" answers
+* Sentinel flush (append 0) replaces end-of-loop cleanup — one bar shorter than everything forces all remaining pops
+* Empty-stack branch is where solutions break — width = i in Largest Rectangle ([2,1,2] → 3 is the proof)
+
+### Advanced Stack Patterns
+* Fight-and-pop (Asteroid Collision): one incoming element can destroy MULTIPLE survivors — while, not if; equal sizes destroy BOTH
+* Inverted stack (Car Fleet): a "violation" skips the push instead of popping — stack only grows, answer is stack.count, reducible to one variable
+* Context stack (Basic Calculator): stack holds paused (result, sign) states frozen at each '(' — pop order is REVERSE of push order
+* Greedy pop (Remove K Digits): pop condition serves an optimisation goal, not a structural rule — the interview obligation is proving the greedy choice safe
+* Circular arrays: loop 2n with i % n, push only in pass one — no rotation needed
+* Arrival-time math needs Double — integer division truncates and merges fleets that shouldn't merge
+* removeFirst() in a loop is O(n²) — scan to the first keeper, slice once
+* RPN pop order: the second pop is the LEFT operand — matters for subtraction and division
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -494,6 +568,11 @@ Each solution includes:
 | Fixed Window + HashMap | fixed-length substrings occurring more than once |
 | KMP (talking point) | "can you do better than O(n·m)?" |
 | Binary Search + Rolling Hash | longest duplicate, variable-length repeats — explain, don't code |
+| Stack (matching) | valid parentheses, balanced, nested, undo, most recent |
+| Monotonic Stack | next greater/smaller, daily temperatures, span, largest rectangle |
+| Context Stack | nested expressions, calculator, decode string, parentheses with state |
+| Greedy Stack | remove k digits to make smallest, keep lexicographic order |
+| Circular Array + Stack | circular next greater — 2n loop with i % n |
 
 ---
 
@@ -511,6 +590,7 @@ It is about:
 * Developing scalable thinking
 * Understanding patterns deeply instead of memorizing solutions
 * Read-only code doesn't stick; derived code does — attempt first, always
+* The invariant has both halves — drill the obvious part, not just the clever part
 
 ---
 
