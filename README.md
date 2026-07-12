@@ -345,6 +345,39 @@ Focused on:
 
 ---
 
+## 🔹 Phase 8 – Queue & Deque ✅ COMPLETE
+
+Focused on:
+
+* Queue fundamentals and the `removeFirst()` O(n) trap
+* Three amortised O(1) mechanisms — head-index compaction, two-stack lazy transfer, ring buffer
+* Circular wrap arithmetic in both directions
+* Monotonic deque — the queue counterpart of the Phase 7 monotonic stack
+* First Hard-tier cold re-derivation pass (Sliding Window Maximum, six weeks after original solve)
+
+### 📌 Topics Covered
+
+#### L1 — Queue Basics ✅
+
+* Queue Basics & Operations (head-index + threshold compaction)
+* Implement Queue Using Array (fixed-capacity contract: front/rear/isEmpty/isFull)
+* Implement Queue Using Stacks — LC 232 (lazy transfer, amortised O(1))
+* Implement Circular Queue — LC 622 (ring buffer, `% capacity` wrap)
+* Implement Deque — LC 641 (backward wrap `(i - 1 + capacity) % capacity`)
+* First In First Out Practice — LC 933 warm-ups
+
+#### L2 — High Priority Interview Questions ✅
+
+* Number Of Recent Calls — LC 933 (sliding time-window eviction)
+* Dota2 Senate — LC 649 (two-queue greedy, winner re-enters at `index + n`)
+* Time Needed To Buy Tickets — LC 2073 (O(n) math over simulation)
+* Moving Average From Data Stream — LC 346 (queue + running sum, O(1) delta)
+* Sliding Window Maximum — LC 239 ⭐ 🔥 Hard (monotonic deque — **cold re-derivation pass**)
+
+📁 `phase-8-queue/` — **11 problems total (problems 133–143) · window Jul 11–12, closed on schedule**
+
+---
+
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
@@ -352,7 +385,7 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | Phase | Topic | Problems | Highlights |
 |-------|-------|----------|------------|
 | 7 ✅ | Stack | 111–132 | Valid Parentheses, Min Stack, Daily Temperatures, Monotonic Stack |
-| 8 | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
+| 8 ✅ | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
 | 9 | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
 | 10 | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
 | 11 | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
@@ -409,7 +442,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 8 – Queue & Deque — starting with problem 133 🚀
+👉 Phase 9 – Linked List — starting with problem 144 🚀
 
 ### ✅ Completed
 
@@ -421,14 +454,15 @@ Each solution includes:
 * Phase 5 — Array Patterns (72 problems: Two Pointer, Partition, Sliding Window, Prefix-Based, Kadane's, Max Product Subarray, Subarray XOR/Sum, Binary Search)
 * Phase 6 — String Patterns (38 problems: Sliding Window, Anagram/Permutation, Palindromes, Reversal, Compression, Pattern Matching KMP/Rabin-Karp/Z)
 * Phase 7 — Stack (22 problems: basics, Valid Parentheses, Min Stack, monotonic stack template, Largest Rectangle, Basic Calculator, greedy stack — closed 2 days early)
+* Phase 8 — Queue & Deque (11 problems: amortised O(1) trilogy, circular queue, deque, Dota2 Senate, Moving Average, Sliding Window Maximum — Hard cold-rewrite pass)
 
 ### 🔄 In Progress
 
-* Phase 8 — Queue & Deque (Queue via Stacks, Circular Queue, Sliding Window Maximum) · Branch: `feature/stack-queue-patterns`
+* Phase 9 — Linked List (Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K Sorted Lists) · Branch: `feature/linkedlist-patterns`
 
 ### ⬜ Upcoming
 
-* Linked List → Trees → BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+* Trees → BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -547,6 +581,41 @@ Each solution includes:
 * removeFirst() in a loop is O(n²) — scan to the first keeper, slice once
 * RPN pop order: the second pop is the LEFT operand — matters for subtraction and division
 
+### Queue Fundamentals
+* Array.removeFirst() is O(n) — the trap every queue implementation exists to escape
+* Three amortised O(1) escapes: head-index + compaction (lazy deletion), two-stack lazy transfer (deferred reversal), ring buffer (overwrite-in-place)
+* Compaction threshold: head > 50 && head * 2 >= items.count — trim only when the dead zone dominates
+* front() reads items[head], never items.first — with lazy deletion, .first returns a dead element
+* Two-stack queue: reverse only when outStack runs dry — each element crosses exactly once
+* Bookkeeping after structural mutation — head = 0 reset after compaction; every mutation touches two things, check both
+
+### Circular Queue / Ring Buffer
+* Forward wrap: (index + 1) % capacity — the array is a ring, not a line
+* Backward wrap: (index - 1 + capacity) % capacity — the + capacity guards against negative modulo
+* Empty-vs-full ambiguity when head == tail: keep an explicit count, or sacrifice one slot — decide BEFORE writing code
+* Define your tail (at the last element vs one past it) as a comment up top — half the bugs come from mixing the two
+
+### Queue + Running Sum (Fixed Window Aggregate)
+* One-in/one-out per step — never re-sum the window: sum += entering, sum -= leaving
+* Divisor is count, not size — the window has a warm-up phase (÷1, ÷2, …) before it fills
+* Double conversion BEFORE dividing — Int / Int truncates silently
+* Evict from the FRONT (removeFirst), never the back — removing the newest is LIFO smuggled into a stream
+* The stream and the window are different objects — the stream grows forever and needn't be stored; only the window matters
+* Works for any invertible aggregate (sum, count) — NOT max/min, which is why Sliding Window Maximum needs a deque
+
+### Monotonic Deque
+* Phase 7 monotonic stack + one new ingredient: expiry from the FRONT — both ends active → deque
+* Invariant: indices in decreasing order of value, all in-window → front is always the max
+* Store INDICES, not values — expiry needs position; a value can't tell you it's too old
+* Eviction order is load-bearing: expire front → flush back → append — append-first evicts the wrong element
+* if for the front (fixed window slides by 1 → at most one expiry per step), while for the back (many dominated values)
+* Back flush uses <= — evicting equals keeps the newer index, which survives in-window longer
+* O(n) amortised — every index enters once, leaves at most once; same argument as the sentinel flush
+
+### Queue Greedy
+* Two-queue greedy (Dota2 Senate): winner survives and re-enters at index + n — the queue IS the round system
+* Math over simulation (Buy Tickets): person i ahead of k buys min(tickets[i], tickets[k]); behind k buys min(tickets[i], tickets[k] - 1) — O(n) sum replaces the whole simulation
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -573,6 +642,11 @@ Each solution includes:
 | Context Stack | nested expressions, calculator, decode string, parentheses with state |
 | Greedy Stack | remove k digits to make smallest, keep lexicographic order |
 | Circular Array + Stack | circular next greater — 2n loop with i % n |
+| Queue (FIFO) | first come first served, process in order, stream, recent requests |
+| Ring Buffer | fixed capacity, circular, design a queue/deque with k slots |
+| Queue + Running Sum | moving average, rolling aggregate over last k values |
+| Monotonic Deque | sliding window MAXIMUM/minimum, max of last k, window + max/min together |
+| Two-Queue Greedy | rounds, turn-based elimination, re-enter the line |
 
 ---
 
@@ -591,6 +665,7 @@ It is about:
 * Understanding patterns deeply instead of memorizing solutions
 * Read-only code doesn't stick; derived code does — attempt first, always
 * The invariant has both halves — drill the obvious part, not just the clever part
+* Earned code survives the cold rewrite — the six-week re-derivation of Sliding Window Maximum proved it
 
 ---
 
