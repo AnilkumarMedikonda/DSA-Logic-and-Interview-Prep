@@ -378,6 +378,54 @@ Focused on:
 
 ---
 
+## 🔹 Phase 9 – Linked List ✅ COMPLETE
+
+Focused on:
+
+* Reference semantics — the first phase where `class` replaces `struct`, and optionals *are* the data structure
+* Building every primitive by hand before composing them
+* Three reusable machines: slow/fast pointers, dummy head, pointer reversal
+* Composition — the L3 problems are almost entirely L2 primitives recombined
+* Design-tier finish: LRU Cache (hashmap + doubly linked list)
+
+### 📌 Topics Covered
+
+#### L1 — Linked List Basics ✅
+
+* Create Node (`final class`, optional `next` as the null terminator)
+* Create Linked List (peel-first head + attach/advance walker)
+* Traversal (`while let` idiom)
+* Insert Node (walk to `position - 1`, grab-then-attach rewire)
+* Delete Node (same walk; the `if let` on the victim IS the bounds check)
+* Search Node (`indexOf` returns `Int?` — no `-1` sentinel)
+* Find Length
+* Find Middle Node (two-pass brute force → slow/fast one-pass)
+
+#### L2 — Interview Patterns ✅
+
+* Reverse Linked List — LC 206 ⭐ Blind75 (iterative 3-pointer + recursive)
+* Merge Two Sorted Lists — LC 21 ⭐ Blind75 (dummy head, `<=` for stability)
+* Linked List Cycle — LC 141 ⭐ Blind75 (Floyd's tortoise & hare)
+* Linked List Cycle II — LC 142 (collision + reset walk, `L = nC − k` proof)
+* Middle Of Linked List — LC 876 (slow/fast, second-middle convention)
+* Remove Nth Node From End — LC 19 (two-pointer gap + dummy head)
+
+#### L3 — Advanced & Design ✅
+
+* Reorder List — LC 143 ⭐ Blind75 (middle + reverse + weave — first-try composition)
+* Palindrome Linked List — LC 234 (middle + reverse + compare, O(1) space)
+* Intersection Of Two Linked Lists — LC 160 (two-pointer list-swap; lengths cancel without measuring)
+* Add Two Numbers — LC 2 ⭐ NeetCode (dummy head + carry; `|| carry != 0` is the classic miss)
+* Sort List — LC 148 ⭐ NeetCode (merge sort on the list, cut-before-slow split)
+* Copy List With Random Pointer — LC 138 ⭐ Blind75 (hashmap O(n) **and** interleave weave O(1))
+* Merge K Sorted Lists — LC 23 ⭐ Blind75 (divide & conquer, O(N log K))
+* Reverse Nodes In k-Group — LC 25 🔥 Hard (iterative, O(1) space, check-before-reverse)
+* LRU Cache — LC 146 ⭐ Blind75 (hashmap + doubly linked list, O(1) get/put)
+
+📁 `phase-9-linked-list/` — **23 problems total (problems 144–166) · window Jul 13–19, closed on schedule · 5× Blind75 · 2× NeetCode**
+
+---
+
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
@@ -386,7 +434,7 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 |-------|-------|----------|------------|
 | 7 ✅ | Stack | 111–132 | Valid Parentheses, Min Stack, Daily Temperatures, Monotonic Stack |
 | 8 ✅ | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
-| 9 | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
+| 9 ✅ | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
 | 10 | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
 | 11 | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
 | 12 | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
@@ -442,7 +490,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 9 – Linked List — starting with problem 144 🚀
+👉 Phase 10 – Trees — starting with problem 167 🚀
 
 ### ✅ Completed
 
@@ -455,14 +503,15 @@ Each solution includes:
 * Phase 6 — String Patterns (38 problems: Sliding Window, Anagram/Permutation, Palindromes, Reversal, Compression, Pattern Matching KMP/Rabin-Karp/Z)
 * Phase 7 — Stack (22 problems: basics, Valid Parentheses, Min Stack, monotonic stack template, Largest Rectangle, Basic Calculator, greedy stack — closed 2 days early)
 * Phase 8 — Queue & Deque (11 problems: amortised O(1) trilogy, circular queue, deque, Dota2 Senate, Moving Average, Sliding Window Maximum — Hard cold-rewrite pass)
+* Phase 9 — Linked List (23 problems: basics, reverse, merge, Floyd's cycle detection + entrance, reorder, palindrome, sort list, copy-with-random, merge K, reverse k-group, LRU Cache — 5× Blind75)
 
 ### 🔄 In Progress
 
-* Phase 9 — Linked List (Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K Sorted Lists) · Branch: `feature/linkedlist-patterns`
+* Phase 10 — Trees (Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize) · Branch: `feature/tree-patterns`
 
 ### ⬜ Upcoming
 
-* Trees → BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+* BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -616,6 +665,51 @@ Each solution includes:
 * Two-queue greedy (Dota2 Senate): winner survives and re-enters at index + n — the queue IS the round system
 * Math over simulation (Buy Tickets): person i ahead of k buys min(tickets[i], tickets[k]); behind k buys min(tickets[i], tickets[k] - 1) — O(n) sum replaces the whole simulation
 
+### Linked List Fundamentals
+* The optional IS the data structure — `nil` is the null terminator, not an error case
+* Building a list needs TWO pointers: head stays, current walks — losing the walker was the single most repeated bug of the phase
+* Peel `values[0]` off as the head, and head/current become NON-optional — the guard doesn't just early-exit, it earns you clean code
+* `while let node = current` — unwrap once, then advance with the binding (`current = node.next`), never `current?.next`
+* Node comparison is always `===` / `!==` — identity, never `==`; `!=` on nodes needs Equatable, which ListNode neither has nor should
+* "Can I step?" is about `next` existence, never about `.value`
+* Guard BEFORE the subscript — `!values.isEmpty` must precede `values[0]`, or the crash beats the check
+
+### Pointer Reversal
+* Four lines, strict order: save `next` → flip `node.next = prev` → advance prev → advance current
+* SAVE NEXT FIRST — flip before save and the entire remaining list is orphaned; no crash, just silently gone
+* Recursive form: reverse the REST first, then `head.next?.next = head` re-points your successor back at you, and `head.next = nil` makes you the tail
+* Same discipline scales: k-group reversal seeds `prev = groupNext` so the group's tail is pre-linked, leaving one stitch
+
+### Slow / Fast Pointers
+* One skeleton, four problems: middle, cycle detection, cycle entrance, palindrome split
+* Loop condition is about FAST (it takes the double step): `while let f = fast, let fNext = f.next`
+* The convention knob: requiring `f.next` → SECOND middle (LC 876); requiring `f.next.next` → FIRST middle (what reorder and merge sort need, so each half stays strictly smaller)
+* Floyd's works because inside a cycle fast gains exactly 1 step per iteration — the gap closes, collision is guaranteed
+* Cycle entrance (LC 142): `L = nC − k`, so L steps from head and L steps from the collision both land on the entrance
+* Never traverse a cyclic list with a print loop — it hangs
+
+### Dummy Head
+* A throwaway sentinel kills every "is this the first node?" and "am I deleting the head?" special case
+* Build off `dummy.next`, return `dummy.next` — the dummy itself is discarded
+* This is why every LC list function returns `ListNode?` — the caller must reassign, because a head-insert changes what head is
+* `tail.next = left ?? right` is the ONE legitimate nil-coalescing: choosing between two node references, not defaulting data to a fake number
+* Removing the only node returns nil with zero special-casing — that's the pattern proving itself
+
+### List Composition (L3)
+* Reorder = middle + reverse + weave · Palindrome = middle + reverse + compare · Sort = middle + recurse + merge
+* The CUT is the step people forget — `mid.next = nil` severs the halves; without it the reversal tangles
+* Merge sort on a list needs a split that shrinks: cut BEFORE slow so `[2,1]` yields `[2]` and `[1]`, or recursion never terminates
+* Copy-with-random: the hashmap keyed on `ObjectIdentifier` resolves any pointer regardless of order; the O(1) weave works because after interleaving, the copy of X is always `X.next`
+* Unweave must RESTORE the original — restore `node.next` first, then read through it to reach the next copy
+
+### Design: Hashmap + Doubly Linked List (LRU)
+* Dictionary gives O(1) lookup but has no order; doubly linked list gives O(1) reorder but no lookup — the pair is the answer
+* Why DOUBLY: to unlink from the middle in O(1) you need `prev`; singly would force an O(n) walk to find the predecessor
+* Dummy head AND dummy tail — insert/remove never special-case the ends or an empty cache
+* Two private helpers (`remove`, `insertAtFront`) — every public operation is a combination of those two
+* The node stores its own `key` — eviction needs it to delete the right dictionary entry
+* THE trap: evicting from the list but forgetting `cache.removeValue(forKey:)` — a stale dict entry that returns garbage later
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -647,6 +741,12 @@ Each solution includes:
 | Queue + Running Sum | moving average, rolling aggregate over last k values |
 | Monotonic Deque | sliding window MAXIMUM/minimum, max of last k, window + max/min together |
 | Two-Queue Greedy | rounds, turn-based elimination, re-enter the line |
+| Slow / Fast Pointers | middle of list, cycle, "without extra space", palindrome list |
+| Dummy Head | new head uncertain, might delete the head, build a result list |
+| Pointer Reversal | reverse list, reverse in groups, reorder, palindrome check |
+| Two-Pointer List Swap | intersection of two lists, different lengths, O(1) space |
+| Divide & Conquer on Lists | sort a list, merge K lists, O(n log n) without extra space |
+| HashMap + Doubly Linked List | LRU/LFU cache, O(1) get AND put, evict least recently used |
 
 ---
 
@@ -666,6 +766,22 @@ It is about:
 * Read-only code doesn't stick; derived code does — attempt first, always
 * The invariant has both halves — drill the obvious part, not just the clever part
 * Earned code survives the cold rewrite — the six-week re-derivation of Sliding Window Maximum proved it
+* Reviewed code is an asset — retyping helpers from memory mid-phase discards it; paste the reviewed version, save cold rewrites for deliberate revision passes
+* The algorithm is rarely where points are lost — the boilerplate around it is
+
+---
+
+# 🏠 House Rules (Swift)
+
+Applied to every solution in this repository:
+
+* No force unwraps (`!`)
+* No `?? 0` — explicit `if let` / `else`. `??` allowed only when choosing between two references (`tail.next = left ?? right`)
+* No predefined convenience functions (`.max()`, `.sorted()`, `.contains()`, `.dropFirst()`)
+* `let` over `var` wherever mutation is absent
+* `while` for condition-driven loops, `for-in` for bounded iteration
+* `final class` for reference types
+* Every problem tested with the empty case, the single-element case, and the failing case
 
 ---
 
@@ -675,3 +791,7 @@ It is about:
 iOS Developer | Swift | DSA | Problem Solving
 
 📁 GitHub: https://github.com/AnilkumarMedikonda/DSA-Logic-and-Interview-Prep
+
+---
+
+*Phase 9 Linked List complete (Jul 13–19) → Next: Trees (Jul 20–Aug 2) → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
