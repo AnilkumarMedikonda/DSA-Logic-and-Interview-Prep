@@ -80,7 +80,7 @@ for num in nums {
     }
 }
 
-print(result)
+//print(result)
 
 /*
 ==================================================
@@ -165,9 +165,12 @@ while right < nums.count {
      */
 
     right += 1
+    
+    print(nums, left, right)
+
 }
 
-print(nums)
+//print(nums)
 
 /*
 ==================================================
