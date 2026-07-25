@@ -426,6 +426,47 @@ Focused on:
 
 ---
 
+## 🔹 Phase 10 – Trees ✅ COMPLETE
+
+Focused on:
+
+* First non-linear structure — recursion moves from technique to *the* tool
+* Post-order bubbled returns: what a node reports vs what it returns can differ
+* Global consumption pointers for building trees from traversals
+* BFS level-size snapshot — one skeleton, four problems
+* Started from zero tree background; closed three Hards (LC 124, 105, 297)
+
+### 📌 Topics Covered
+
+#### L1 — Tree Basics ✅
+
+* Create Binary Tree (level-order builder from `[Int?]`, nil = missing child)
+* Preorder Traversal (recursive + iterative stack)
+* Inorder Traversal (recursive + iterative, push-left-spine)
+* Postorder Traversal (recursive + iterative)
+* Level Order Traversal (BFS queue with head index)
+* Maximum Depth (recursive + iterative)
+
+#### L2 — High Priority Interview Questions ✅
+
+* Invert Binary Tree — LC 226 ⭐ Blind75 (swap children, recurse)
+* Same Tree — LC 100 ⭐ Blind75 (parallel DFS, structure + value)
+* Balanced Binary Tree — LC 110 ⭐ Blind75 (brute force → `-1` sentinel, one pass)
+* Diameter Of Binary Tree — LC 543 ⭐ Blind75 (report `left + right`, return `1 + max`)
+* Subtree Of Another Tree — LC 572 ⭐ Blind75 (serialization + `isSameTree` at every node)
+* Binary Tree Level Order — LC 102 (BFS level-size snapshot + DFS level-index)
+* Binary Tree Zigzag Level Order — LC 103 (BFS with direction flag)
+* Binary Tree Right Side View — LC 199 (BFS last-in-level + DFS right-first, `depth == result.count`)
+* Lowest Common Ancestor — LC 235/236 ⭐ Blind75 (DFS bubbled return; BST walk as O(h)/O(1) upgrade)
+* Binary Tree Maximum Path Sum — LC 124 ⭐ Blind75 🔥 Hard (split-path answer vs straight-path return)
+* Construct Binary Tree — LC 105 🔥 Hard (value→index dict + global preorder pointer, first-attempt optimal)
+* Serialize / Deserialize Tree — LC 297 ⭐ Blind75 🔥 Hard (preorder with `#` nil sentinels, first-attempt solve)
+* Path Sum — LC 112 (subtract-and-check **at leaf**, not at nil)
+
+📁 `phase-10-trees/` — **19 problems total (problems 167–185) · window Jul 20–Aug 2, closed Jul 25 — a week early · 7× Blind75 · 3× Hard**
+
+---
+
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
@@ -435,7 +476,7 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 7 ✅ | Stack | 111–132 | Valid Parentheses, Min Stack, Daily Temperatures, Monotonic Stack |
 | 8 ✅ | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
 | 9 ✅ | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
-| 10 | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
+| 10 ✅ | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
 | 11 | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
 | 12 | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
 | 13 | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary |
@@ -490,7 +531,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 10 – Trees — starting with problem 167 🚀
+👉 Phase 11 – Binary Search Tree — starting with problem 186 🚀
 
 ### ✅ Completed
 
@@ -504,14 +545,15 @@ Each solution includes:
 * Phase 7 — Stack (22 problems: basics, Valid Parentheses, Min Stack, monotonic stack template, Largest Rectangle, Basic Calculator, greedy stack — closed 2 days early)
 * Phase 8 — Queue & Deque (11 problems: amortised O(1) trilogy, circular queue, deque, Dota2 Senate, Moving Average, Sliding Window Maximum — Hard cold-rewrite pass)
 * Phase 9 — Linked List (23 problems: basics, reverse, merge, Floyd's cycle detection + entrance, reorder, palindrome, sort list, copy-with-random, merge K, reverse k-group, LRU Cache — 5× Blind75)
+* Phase 10 — Trees (19 problems: traversals, invert, balanced, diameter, LCA, Max Path Sum, construct from traversals, serialize/deserialize, path sum — 7× Blind75, 3× Hard, closed a week early)
 
 ### 🔄 In Progress
 
-* Phase 10 — Trees (Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize) · Branch: `feature/tree-patterns`
+* Phase 11 — Binary Search Tree (Validate BST, Kth Smallest, BST Iterator)
 
 ### ⬜ Upcoming
 
-* BST → Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+* Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -710,6 +752,43 @@ Each solution includes:
 * The node stores its own `key` — eviction needs it to delete the right dictionary entry
 * THE trap: evicting from the list but forgetting `cache.removeValue(forKey:)` — a stale dict entry that returns garbage later
 
+### Tree Traversals
+* Preorder = root-left-right, inorder = left-root-right, postorder = left-right-root — the position of "root" IS the name
+* Iterative inorder: push the whole left spine, pop, then jump right — the stack replaces the call stack
+* BFS with a head index instead of removeFirst() — the Phase 8 lesson carries straight over
+* Preorder hands out roots in exactly the order a recursive build consumes them
+
+### Post-Order Bubbled Return
+* What a node REPORTS to the answer and what it RETURNS to its parent can differ — Diameter reports left + right, returns 1 + max(left, right)
+* A parent extending through a node can enter only ONE child — that's why the return is the straight path
+* Max Path Sum: report the split path (both children + node), return the straight path — conflating them is THE bug
+* max(0, childPath) clamp drops negative branches instead of dragging the sum down — never early-exit on negative target/sum, values can be negative
+* Sentinel in the return (-1 = unbalanced) answers two questions in one pass — same trick family as Phase 7's augmented Min Stack
+
+### LCA
+* The return value is overloaded: "the LCA if found here, else whichever of p/q was found, else nil" — both children non-nil ⇒ targets split ⇒ this node is the answer
+* Uses `===` identity, so duplicate values are safe — the BST walk compares values and needs the ordering
+* BST upgrade is one sentence: both smaller → left, both larger → right, else split → answer. O(h)/O(1) iterative
+* Node is p or q → return immediately — the self-ancestor case falls out for free
+
+### Build From Traversals / Global Consumption Pointer
+* preorder[0] is always the current root; its inorder position splits left subtree from right
+* Dictionary value→inorder index kills the O(n) scan; index-range recursion kills array slicing — O(n²) → O(n)
+* LEFT BEFORE RIGHT is load-bearing — the pointer must drain the left subtree's tokens before the right's; swapped order breaks silently
+* Look up / validate BEFORE consuming the pointer — a failed lookup after increment corrupts state
+* Invariant: every call consumes exactly its own subtree's tokens and leaves the pointer at the next sibling
+
+### Serialize / Deserialize
+* Preorder + explicit `#` nil markers is SELF-DESCRIBING — each `#` closes a branch, so shape travels in the token stream
+* Inorder alone is ambiguous (root vs subtree indistinguishable); preorder or postorder work
+* Deserialize IS the LC 105 pattern — global token index, sentinel instead of an inorder split
+* Bounds-guard the index and parse with `if let` — truncated input returns nil instead of crashing
+
+### Path Sum
+* The leaf check lives AT THE LEAF (`target == value`), never at nil — the nil version wrongly accepts paths ending at internal nodes
+* Killer test: [1,2] with target 1 → false (node 1 sums but isn't a leaf)
+* Subtract and pass the remainder down; `||` short-circuits the right subtree once the left succeeds
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -747,6 +826,12 @@ Each solution includes:
 | Two-Pointer List Swap | intersection of two lists, different lengths, O(1) space |
 | Divide & Conquer on Lists | sort a list, merge K lists, O(n log n) without extra space |
 | HashMap + Doubly Linked List | LRU/LFU cache, O(1) get AND put, evict least recently used |
+| Tree DFS (bubbled return) | height, depth, balanced, diameter, path sum through nodes |
+| Tree BFS (level snapshot) | level order, zigzag, right side view, level averages |
+| LCA | lowest common ancestor, deepest shared parent |
+| Global Consumption Pointer | build tree from traversals, deserialize, token streams |
+| Self-Describing Encoding | serialize/deserialize, flatten and rebuild structure |
+| Leaf-Anchored Recursion | root-to-leaf paths, path sum, must END at a leaf |
 
 ---
 
@@ -794,4 +879,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 9 Linked List complete (Jul 13–19) → Next: Trees (Jul 20–Aug 2) → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 10 Trees complete (Jul 20–25, a week ahead of the Aug 2 target) → Next: BST (186–193) → Heap → Graph → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
