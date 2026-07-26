@@ -467,6 +467,34 @@ Focused on:
 
 ---
 
+## 🔹 Phase 11 – Binary Search Tree ✅ COMPLETE
+
+Focused on:
+
+* The three-way walk — value comparisons replace searching
+* Delete's three cases and the inorder-successor replacement
+* Inorder-is-sorted as one property driving four problems (validate, kth smallest, iterator, construction)
+* Whole-subtree range bounds vs naive parent-child checks
+* First design-style class of the roadmap (BST Iterator)
+
+### 📌 Topics Covered
+
+#### L1 — BST Basics ✅
+
+* Search In BST — LC 700 (recursive + iterative three-way walk, O(h)/O(1))
+* Insert Into BST — LC 701 (recurse-and-reattach + iterative parent tracking)
+* Delete Node In BST — LC 450 (leaf / one-child / two-children successor replace)
+* Validate BST — LC 98 (range (min, max) with optional bounds ⭐ + inorder alternate)
+
+#### L2 — High Priority Interview Questions ✅
+
+* Kth Smallest Element In BST — LC 230 ⭐ Blind75 (inorder counter + early exit, O(h + k))
+* Lowest Common Ancestor Of BST — LC 235 (iterative value-guided walk, O(h)/**O(1)**)
+* BST Iterator — LC 173 (controlled inorder — stack holds paused state, amortized O(1))
+* Convert Sorted Array To BST — LC 108 (middle-as-root, inclusive index-range recursion)
+
+📁 `phase-11-binary-search-tree/` — **8 problems total (problems 186–193) · closed Jul 26 · 1× Blind75**
+
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
@@ -477,8 +505,8 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 8 ✅ | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
 | 9 ✅ | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
 | 10 ✅ | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
-| 11 | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
-| 12 | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
+| 11 ✅ | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator
+|| 12 | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
 | 13 | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary |
 | 14 | Trie | 220–223 | Implement Trie, Word Search II |
 | 15 | Backtracking | 224–232 | Subsets, Permutations, Combination Sum, N-Queens |
@@ -531,7 +559,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 11 – Binary Search Tree — starting with problem 186 🚀
+👉 Phase 12 – Heap — starting with problem 194 🚀
 
 ### ✅ Completed
 
@@ -549,7 +577,7 @@ Each solution includes:
 
 ### 🔄 In Progress
 
-* Phase 11 — Binary Search Tree (Validate BST, Kth Smallest, BST Iterator)
+* Phase 12 — Heap (Min/Max Heap, Top K Frequent, Median From Stream)
 
 ### ⬜ Upcoming
 
@@ -789,6 +817,30 @@ Each solution includes:
 * Killer test: [1,2] with target 1 → false (node 1 sums but isn't a leaf)
 * Subtract and pass the remainder down; `||` short-circuits the right subtree once the left succeeds
 
+### BST Three-Way Walk
+* key < node → left, key > node → right, else found — the backbone of search, insert, delete, LCA
+* Recurse-and-reattach: `root.left = f(...)` — dropping the reattachment orphans nodes
+* Delete's successor logic belongs INSIDE the match branch — outside, it runs on every ancestor and corrupts the tree
+* LCA: the split node is the answer — no explicit == check needed; failing both "same side" conditions implies it
+
+### BST Validation (Range Bounds)
+* Validity is a WHOLE-SUBTREE property — parent-child checks pass deep violations ([10,5,15,null,null,6,20])
+* Left tightens the UPPER bound, right tightens the LOWER — copying max into both calls is the silent bug
+* Optional bounds over Int.min/Int.max sentinels — nil means unbounded, no edge cases
+* Strict comparison: <= catches duplicates, which are invalid
+
+### Inorder Is Sorted (One Property, Four Problems)
+* Validate: inorder must be strictly increasing
+* Kth smallest: the kth inorder visit — `count < k` in the guard is what earns O(h + k)
+* Iterator: pause the iterative inorder between calls — the stack IS the paused state; each node pushed/popped once → amortized O(1)
+* Construction is the reverse: sorted array → middle-as-root recursion rebuilds a balanced BST
+* Right-first inorder gives kth LARGEST — direction matters
+
+### Index-Range Recursion (Construction)
+* Inclusive range [lo, hi] is empty when lo > hi — the base case must match the range convention
+* Ranges over slicing: O(n) instead of O(n log n) copying
+* Overflow-safe mid: lo + (hi - lo) / 2 — same form as Phase 5 binary search
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -832,6 +884,10 @@ Each solution includes:
 | Global Consumption Pointer | build tree from traversals, deserialize, token streams |
 | Self-Describing Encoding | serialize/deserialize, flatten and rebuild structure |
 | Leaf-Anchored Recursion | root-to-leaf paths, path sum, must END at a leaf |
+| BST Three-Way Walk | search/insert/delete in BST, LCA of BST, O(h) |
+| BST Range Bounds | validate BST, whole-subtree constraints carried down |
+| Controlled Inorder | kth smallest, BST iterator, "next smallest", sorted stream from tree |
+| Sorted Array → BST | height-balanced construction, middle-as-root |
 
 ---
 
@@ -879,4 +935,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 10 Trees complete (Jul 20–25, a week ahead of the Aug 2 target) → Next: BST (186–193) → Heap → Graph → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 11 BST complete (closed Jul 26) → Next: Heap (194–202) → Graph → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
