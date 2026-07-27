@@ -495,6 +495,39 @@ Focused on:
 
 📁 `phase-11-binary-search-tree/` — **8 problems total (problems 186–193) · closed Jul 26 · 1× Blind75**
 
+---
+
+## 🔹 Phase 12 – Heap / Priority Queue ✅ COMPLETE
+
+Focused on:
+
+* Array-backed binary heaps built from scratch — index arithmetic replaces node pointers
+* Min and max heap are one comparator apart — flip `<` and `>`, nothing else changes
+* Size-k heaps for top-k problems — pay log k per element, never sort everything
+* Two heaps splitting a stream in half — running median at the roots
+* Heap-driven simulation — repeatedly act on the extremum and re-insert the result
+
+### 📌 Topics Covered
+
+#### L1 — Heap Basics ✅
+
+* Implement Min Heap (array-backed: parent `(i-1)/2`, children `2i+1`/`2i+2`, sift up/down)
+* Implement Max Heap (same structure, comparators flipped)
+* Priority Queue (MaxHeap wrapper with enqueue/dequeue API)
+
+#### L2 — High Priority Interview Questions ✅
+
+* Kth Largest Element In Array — LC 215 ⭐ NeetCode (size-k **min**-heap — the root is the answer)
+* Top K Frequent Elements — LC 347 ⭐ Blind75 (`HeapNode(number, frequency)` pairs + O(n) bucket-sort alternate)
+* Find Median From Data Stream — LC 295 ⭐ Blind75 🔥 Hard (two heaps — max-heap lower half, min-heap upper)
+* Task Scheduler — LC 621 (frame formula `(maxFreq−1)(n+1) + ties`; heap + cooldown queue alternate)
+* K Closest Points To Origin — LC 973 (size-k **max**-heap, squared distance — no sqrt)
+* Last Stone Weight — LC 1046 (max-heap smash simulation)
+
+📁 `phase-12-heap/` — **9 problems total (problems 194–202) · closed Jul 27 · 2× Blind75 · 1× NeetCode · 1× Hard**
+
+---
+
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
@@ -505,8 +538,8 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 8 ✅ | Queue & Deque | 133–143 | Queue via Stacks, Circular Queue, Sliding Window Maximum |
 | 9 ✅ | Linked List | 144–166 | Reverse List, Cycle Detection, Reorder, LRU Cache, Merge K |
 | 10 ✅ | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
-| 11 ✅ | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator
-|| 12 | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
+| 11 ✅ | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
+| 12 ✅ | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
 | 13 | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary |
 | 14 | Trie | 220–223 | Implement Trie, Word Search II |
 | 15 | Backtracking | 224–232 | Subsets, Permutations, Combination Sum, N-Queens |
@@ -559,7 +592,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 12 – Heap — starting with problem 194 🚀
+👉 Phase 13 – Graph — starting with problem 203 🚀
 
 ### ✅ Completed
 
@@ -574,14 +607,16 @@ Each solution includes:
 * Phase 8 — Queue & Deque (11 problems: amortised O(1) trilogy, circular queue, deque, Dota2 Senate, Moving Average, Sliding Window Maximum — Hard cold-rewrite pass)
 * Phase 9 — Linked List (23 problems: basics, reverse, merge, Floyd's cycle detection + entrance, reorder, palindrome, sort list, copy-with-random, merge K, reverse k-group, LRU Cache — 5× Blind75)
 * Phase 10 — Trees (19 problems: traversals, invert, balanced, diameter, LCA, Max Path Sum, construct from traversals, serialize/deserialize, path sum — 7× Blind75, 3× Hard, closed a week early)
+* Phase 11 — Binary Search Tree (8 problems: three-way walk, delete with successor replace, validate via range bounds, kth smallest, BST iterator, sorted array → BST — closed Jul 26)
+* Phase 12 — Heap (9 problems: min/max heap from scratch, priority queue, kth largest, top K frequent, median from stream, task scheduler, K closest points, last stone weight — 2× Blind75, 1× Hard, closed Jul 27)
 
 ### 🔄 In Progress
 
-* Phase 12 — Heap (Min/Max Heap, Top K Frequent, Median From Stream)
+* Phase 13 — Graph (Islands, Clone Graph, Course Schedule, Alien Dictionary)
 
 ### ⬜ Upcoming
 
-* Heap → Graph → Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+* Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -841,6 +876,39 @@ Each solution includes:
 * Ranges over slicing: O(n) instead of O(n log n) copying
 * Overflow-safe mid: lo + (hi - lo) / 2 — same form as Phase 5 binary search
 
+### Heap Fundamentals
+* Array as tree: parent (i-1)/2, children 2i+1 / 2i+2 — the whole structure is three formulas
+* insert sifts UP, remove sifts DOWN — calling the wrong one fails only on deeper heaps
+* Write child index formulas visually parallel — `2 * i * 2 + 1` is 4i+1 and passes shallow tests (correct at the root)
+* Min and max heap are one comparator apart — flip `<` and `>`, nothing else changes
+* Strict `<` / `>` only — `<=` causes equal-swap churn
+* remove(): swapAt(0, last) + removeLast + siftDown; count == 1 early-returns removeLast
+* @discardableResult on remove() — eviction discards the value intentionally
+
+### Size-k Heap (Top-K)
+* Keep only k candidates, evict the worst — pay log k per element instead of sorting everything
+* INVERT the heap: kth LARGEST needs a MIN-heap, k CLOSEST needs a MAX-heap — the root is always the eviction candidate
+* One sentence justifies it: "I never need the full ordering, only the k best"
+* HeapNode(value, priority) pairs when the sort key isn't the payload (frequency, distance)
+* Squared distance ranks identically to real distance — skip sqrt entirely
+* Output comes back in heap order, not sorted — know it before the interviewer asks
+* Ladder: sort O(n log n) → size-k heap O(n log k) → bucket sort / QuickSelect O(n)
+
+### Two Heaps (Stream Median)
+* Max-heap owns the lower half, min-heap the upper — the median lives at the roots
+* Insert into the correct half first, then rebalance: maxHeap may hold at most one extra
+* Odd count → maxHeap root; even count → average of both roots
+* LeetCode matches method names exactly — a signature typo fails before logic runs
+* Follow-up: values bounded in [0, 100] → counting array + two pointers
+
+### Heap Simulation
+* Repeatedly act on the extremum and re-insert the result — scheduler, stone smashing
+* Task Scheduler ladder: sort greedy → frame formula max(n, (maxFreq−1)(n+1) + ties) → heap + cooldown queue
+* Only the heap simulation can reconstruct the actual schedule — the formula gives length only
+* Cooldown queue holds (remaining, readyTime) pairs; head-index dequeue carries over from Phase 8
+* Sort is a smell when you only need the max — one pass gives max + tie count
+* Safe-by-guard ≠ safe-by-construction — `count > 1` justifying `!` is exactly what `if let` replaces
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -888,6 +956,10 @@ Each solution includes:
 | BST Range Bounds | validate BST, whole-subtree constraints carried down |
 | Controlled Inorder | kth smallest, BST iterator, "next smallest", sorted stream from tree |
 | Sorted Array → BST | height-balanced construction, middle-as-root |
+| Heap (Extremum) | repeatedly take the largest/smallest, priority, smash/combine top two |
+| Size-k Heap | kth largest, top k frequent, k closest — k ≪ n, streams |
+| Two Heaps | running median, split a stream into halves, "median from data stream" |
+| Heap Simulation + Cooldown | task scheduling, cooldown/cooling period, reconstruct the schedule |
 
 ---
 
@@ -935,4 +1007,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 11 BST complete (closed Jul 26) → Next: Heap (194–202) → Graph → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 12 Heap complete (closed Jul 27) → Next: Graph (203–219) → Trie → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
