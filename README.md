@@ -528,6 +528,47 @@ Focused on:
 
 ---
 
+## 🔹 Phase 13 – Graph ✅ COMPLETE
+
+Focused on:
+
+* Five core graph algorithms: DFS/BFS traversal, Topological Sort, Union-Find, Dijkstra's, Kruskal's
+* Graph as adjacency list — array-backed for dense 0..<n, dictionary-backed for sparse/string nodes
+* Union-Find as a reusable data structure — one tool solving cycle detection, components, redundancy, and MST
+* Parent tracking in undirected DFS — skip the edge you came from to avoid false cycle detection
+* BFS guarantees shortest path in unweighted graphs — DFS does NOT; `removeLast()` silently turns BFS into DFS
+* Pattern-based neighbor mapping — wildcard grouping replaces O(N²) pairwise comparison
+* Reverse DFS from boundaries — flow uphill from ocean edges, intersect two visited sets
+
+### 📌 Topics Covered
+
+#### L1 — Graph Basics ✅
+
+* Graph Representation (adjacency list from edge list, undirected both-direction append)
+* DFS Traversal (recursive with visited array)
+* BFS Traversal (iterative with queue + head pointer + visited)
+* Connected Components (DFS outer loop — count of kickoffs = count of components)
+* Number of Islands — LC 200 ⭐ Blind75 (grid DFS/BFS flood fill, sink visited cells)
+* Clone Graph — LC 133 ⭐ Blind75 (DFS + visited map old→clone)
+* Rotting Oranges — LC 994 (multi-source BFS, level = minutes)
+* Pacific Atlantic Water Flow — LC 417 (reverse DFS from ocean edges, intersect visited sets)
+
+#### L2 — High Priority Interview Questions ✅
+
+* Course Schedule — LC 207 ⭐ Blind75 (topological sort / cycle detection via Kahn's)
+* Course Schedule II — LC 210 (topological sort — Kahn's Algorithm, return ordering)
+* Connected Components — LC 323 ⭐ Blind75 (DFS outer loop / Union-Find)
+* Graph Valid Tree — LC 261 ⭐ Blind75 (DFS + parent tracking + edge count + connectivity)
+* Alien Dictionary — LC 269 🔥 Hard (build directed graph from adjacent word pairs, topological sort)
+* Redundant Connection — LC 684 (Union-Find with path compression + union by rank)
+* Word Ladder — LC 127 🔥 Hard (BFS shortest path, pattern-based neighbor mapping)
+* Network Delay Time — LC 743 (Dijkstra's Algorithm, return max distance)
+* Min Cost to Connect Points — LC 1584 (Kruskal's MST, Manhattan distance, Union-Find)
+
+📁 `phase-13-graph/` — **17 problems total (problems 203–219) · closed Jul 31 · 3× Blind75 · 2× Hard**
+
+---
+
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
@@ -540,7 +581,7 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 10 ✅ | Trees | 167–185 | Traversals, Invert, Diameter, LCA, Max Path Sum, Serialize |
 | 11 ✅ | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
 | 12 ✅ | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
-| 13 | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary |
+| 13 ✅ | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary, Dijkstra's, Kruskal's |
 | 14 | Trie | 220–223 | Implement Trie, Word Search II |
 | 15 | Backtracking | 224–232 | Subsets, Permutations, Combination Sum, N-Queens |
 | 16 | Greedy | 233–238 | Jump Game, Gas Station, Partition Labels |
@@ -592,7 +633,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 13 – Graph — starting with problem 203 🚀
+👉 Phase 14 – Trie — starting with problem 220 🚀
 
 ### ✅ Completed
 
@@ -609,14 +650,15 @@ Each solution includes:
 * Phase 10 — Trees (19 problems: traversals, invert, balanced, diameter, LCA, Max Path Sum, construct from traversals, serialize/deserialize, path sum — 7× Blind75, 3× Hard, closed a week early)
 * Phase 11 — Binary Search Tree (8 problems: three-way walk, delete with successor replace, validate via range bounds, kth smallest, BST iterator, sorted array → BST — closed Jul 26)
 * Phase 12 — Heap (9 problems: min/max heap from scratch, priority queue, kth largest, top K frequent, median from stream, task scheduler, K closest points, last stone weight — 2× Blind75, 1× Hard, closed Jul 27)
+* Phase 13 — Graph (17 problems: DFS/BFS traversal, flood fill, clone graph, topological sort, Union-Find, cycle detection, Dijkstra's, Kruskal's MST, word ladder, alien dictionary — 3× Blind75, 2× Hard, closed Jul 31)
 
 ### 🔄 In Progress
 
-* Phase 13 — Graph (Islands, Clone Graph, Course Schedule, Alien Dictionary)
+* Phase 14 — Trie (Implement Trie, Word Search II)
 
 ### ⬜ Upcoming
 
-* Trie → Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+* Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -909,6 +951,63 @@ Each solution includes:
 * Sort is a smell when you only need the max — one pass gives max + tie count
 * Safe-by-guard ≠ safe-by-construction — `count > 1` justifying `!` is exactly what `if let` replaces
 
+### Graph Fundamentals
+* Adjacency list from edge list — undirected edges need BOTH directions: `graph[u].append(v)` AND `graph[v].append(u)`; one-directional append splits a single component into two
+* Array-backed graph for dense 0..<n nodes — the empty bucket for an isolated node EXISTS and `dfs()` marks it; dictionary-backed graphs miss isolated nodes entirely (`for node in graph.keys` skips them)
+* DFS outer loop is NOT just traversal — `count += 1` goes BEFORE `dfs(node)` in the outer loop, not inside `dfs()`; inside counts every NODE, not every COMPONENT
+* Missing `dfs()` call in the outer loop leaves visited all-false and returns n instead of actual component count — the most common silent bug
+
+### DFS/BFS Traversal
+* DFS = depth-first (explore one path completely); BFS = level-by-level (guaranteed shortest path in unweighted graphs)
+* BFS MUST be FIFO — `removeLast()` silently turns BFS into DFS; use manual head pointer or `removeFirst()`; shortest path guarantee breaks with no error
+* Grid problems treat cells as nodes and four-directional adjacency as edges — flood fill marks visited cells to avoid revisiting
+* Multi-source BFS seeds the queue with ALL sources at level 0 — one BFS, not N separate ones (Rotting Oranges)
+* Reverse DFS from boundaries: instead of checking if every cell reaches the target, start from the target and flow uphill; intersect two visited sets (Pacific Atlantic)
+* Clone Graph: DFS + visited map (old node → clone node); the map prevents infinite loops on cycles AND serves as the clone registry
+
+### Topological Sort (Kahn's Algorithm)
+* Track in-degrees, seed queue with zero-degree nodes, peel layer by layer — if result count < total nodes → cycle exists
+* Each edge processed once: decrement in-degree of neighbors, add to queue when in-degree hits 0
+* Works only on DIRECTED graphs — undirected edges have no notion of dependency
+* Alien Dictionary: compare ADJACENT words only; first differing character gives one edge; stop after first difference (only one relationship per pair)
+* Invalid input trap: word1 is longer AND word2 is prefix of word1 → contradicts sorting → return ""
+* Duplicate edge guard: check `!graph[char].contains(neighbor)` before adding — duplicate edges inflate in-degree counts
+
+### Union-Find (Disjoint Set Union)
+* `find()` with path compression: `parent[x] = find(parent[x])` — flattens the tree for nearly O(1) lookups
+* `union()` with rank: attach smaller tree under larger — keeps tree balanced
+* Cycle detection: if `find(u) == find(v)` BEFORE union → they're already connected → adding this edge creates a cycle
+* One data structure, four problem types: connected components (213), tree validation (214), redundancy (216), minimum spanning tree (219)
+* Initialize `parent[i] = i` — each node is its own root initially
+* α(N) inverse Ackermann ≈ O(1) for all practical inputs — effectively linear
+
+### Parent Tracking (Undirected Cycle Detection)
+* In undirected graphs, each edge appears bidirectionally — `dfs(1, parent=0)` sees neighbor 0 and must SKIP it to avoid false cycle detection
+* `if neighbor == parent { continue }` before the visited check — without this, every single edge reports a cycle
+* A REAL cycle is reaching a visited node through a DIFFERENT path (not the parent edge)
+* Guard version: `guard neighbor != parent else { continue }` then `if visited[neighbor] { return false }` — or condensed: `if neighbor != parent && visited[neighbor] { return false }`
+* Tree validation needs THREE properties: exactly n-1 edges, no cycles, all nodes connected — checking only one or two is insufficient
+
+### Dijkstra's Algorithm (Weighted Shortest Path)
+* Greedy: always process the closest unvisited node — update neighbor distances if shorter path found (relaxation)
+* Works ONLY with positive edge weights — negative weights break the greedy assumption
+* Initialize distances[source] = 0, all others = Int.max; use visited set to skip already-processed nodes
+* Priority queue (or sorted array) gives O((V + E) log V) — without it, naive scan is O(V²)
+* Network Delay Time: run Dijkstra's from source, return max(distances) — if any node is Int.max → return -1 (unreachable)
+
+### Kruskal's Algorithm (Minimum Spanning Tree)
+* Sort ALL edges by cost, greedily add cheapest edge that doesn't create a cycle (Union-Find check)
+* Stop at exactly N-1 edges — a tree with N nodes has N-1 edges
+* Manhattan distance: |x1 - x2| + |y1 - y2| — generate all N² edges between points, sort, then Kruskal's
+* Time: O(N² log N) for dense graphs (all-pairs edges); O(E log E) for sparse graphs
+
+### BFS Shortest Path (Word Ladder)
+* BFS guarantees shortest path in unweighted graphs — DFS does NOT; this is non-negotiable
+* Pattern-based neighbor mapping: replace each character with `*` to group words by wildcard; `"h*t"` maps `[hit, hot]` — avoids O(N²) pairwise comparison
+* Mark visited WHEN ADDING to queue, not when processing — prevents duplicate entries
+* Build neighbor graph ONCE before BFS, not inside the BFS loop — nesting BFS inside graph-building runs the entire search N times with incomplete data
+* String tuple interpolation `\(word, 1)` fails in Swift — interpolate elements separately `(\(word), 1)`
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -960,6 +1059,16 @@ Each solution includes:
 | Size-k Heap | kth largest, top k frequent, k closest — k ≪ n, streams |
 | Two Heaps | running median, split a stream into halves, "median from data stream" |
 | Heap Simulation + Cooldown | task scheduling, cooldown/cooling period, reconstruct the schedule |
+| DFS/BFS Flood Fill | number of islands, connected components, grid traversal, "how many groups" |
+| Multi-Source BFS | rotting oranges, nearest 0, fire spreading — ALL sources start at level 0 |
+| Reverse DFS from Boundaries | pacific atlantic, cells reachable from edges, flow uphill from target |
+| Clone Graph (DFS + Map) | deep copy a graph, visited map doubles as clone registry |
+| Topological Sort (Kahn's) | course schedule, task ordering, dependencies, "what order", alien dictionary |
+| Union-Find (DSU) | redundant connection, connected components, cycle detection, "is it a tree" |
+| Parent Tracking (Undirected) | graph valid tree, undirected cycle detection, skip the edge you came from |
+| Dijkstra's (Weighted Path) | network delay, cheapest flights, shortest path with weights, positive edges only |
+| Kruskal's (MST) | min cost to connect, minimum spanning tree, connect all points, cheapest network |
+| BFS Shortest Transform | word ladder, minimum transformations, unweighted shortest path between states |
 
 ---
 
@@ -981,6 +1090,7 @@ It is about:
 * Earned code survives the cold rewrite — the six-week re-derivation of Sliding Window Maximum proved it
 * Reviewed code is an asset — retyping helpers from memory mid-phase discards it; paste the reviewed version, save cold rewrites for deliberate revision passes
 * The algorithm is rarely where points are lost — the boilerplate around it is
+* The question framework beats algorithm memorization — "What order?" → topological sort, "Is there a cycle?" → Union-Find, "Shortest path?" → BFS or Dijkstra's
 
 ---
 
@@ -1007,4 +1117,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 12 Heap complete (closed Jul 27) → Next: Graph (203–219) → Trie → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 13 Graph complete (closed Jul 31) → Next: Trie (220–223) → Backtracking → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
