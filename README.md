@@ -567,9 +567,39 @@ Focused on:
 
 📁 `phase-13-graph/` — **17 problems total (problems 203–219) · closed Jul 31 · 3× Blind75 · 2× Hard**
 
+
+## 🔹 Phase 14 – Trie ✅ COMPLETE
+
+Focused on:
+
+* Trie node structure — children dictionary + end-of-word marker
+* O(L) prefix lookups regardless of dictionary size
+* Wildcard search via DFS branching — recursion enables backtracking to sibling branches
+* Trie as a DFS pruner — one Trie from all words beats per-word grid search
+* The "#" visited trick and nil-out dedup for grid backtracking
+
+### 📌 Topics Covered
+
+#### L1 — Trie Basics ✅
+
+* TrieNode Basics (children map + isWord flag)
+* Insert One Word (node creation vs reuse)
+* Insert Multiple Words (shared prefix behavior)
+* Search Word (word vs prefix difference)
+* StartsWith (prefix check — ignores isWord)
+* Trie Template (clean reusable base for all LC problems)
+
+#### L2 — High Priority Interview Questions ✅
+
+* Implement Trie (Prefix Tree) — LC 208 ⭐ Blind75 (insert/search/startsWith, all O(L))
+* Design Add And Search Words — LC 211 ⭐ Blind75 (DFS with '.' wildcard branching)
+* Word Search II — LC 212 ⭐ Blind75 🔥 Hard (Trie + grid backtracking, "#" visited trick, nil-out dedup)
+
+📁 `phase-14-trie/` — **3 problems total (problems 220–222) · closed Aug 1 · 3× Blind75 · 1× Hard**
+
 ---
 
-# 🗺️ Master Roadmap — Phases 7–20 (Problems 111–264)
+# 🗺️ Master Roadmap — Phases 7–20 (Problems 111–246)
 
 Blind75-complete roadmap covering every remaining interview topic, ordered by concept dependency:
 
@@ -582,13 +612,13 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 11 ✅ | Binary Search Tree | 186–193 | Validate BST, Kth Smallest, BST Iterator |
 | 12 ✅ | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
 | 13 ✅ | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary, Dijkstra's, Kruskal's |
-| 14 | Trie | 220–223 | Implement Trie, Word Search II |
-| 15 | Backtracking | 224–232 | Subsets, Permutations, Combination Sum, N-Queens |
-| 16 | Greedy | 233–238 | Jump Game, Gas Station, Partition Labels |
-| 17 | Intervals | 239–242 | Merge Intervals, Insert Interval, Meeting Rooms I & II |
-| 18 | Matrix | 243–246 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
-| 19 | Dynamic Programming | 247–260 | Climbing Stairs, Coin Change, LIS, Word Break, LCS, Edit Distance |
-| 20 | Bit Manipulation | 261–264 | Number of 1 Bits, Counting Bits, Reverse Bits |
+| 14 ✅ | Trie | 220–222 | Implement Trie, Add & Search Words, Word Search II |
+| 15 | Backtracking | 223–226 | Subsets, Permutations, Combination Sum, Word Search |
+| 16 | Greedy | 227 | Jump Game |
+| 17 | Intervals | 228–230 | Merge Intervals, Insert Interval, Non-Overlapping Intervals |
+| 18 | Matrix | 231–233 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
+| 19 | Dynamic Programming | 234–243 | Climbing Stairs, Coin Change, LIS, Word Break, LCS |
+| 20 | Bit Manipulation | 244–246 | Number of 1 Bits, Counting Bits, Reverse Bits |
 
 Full folder-level breakdown lives in `ROADMAP.md`.
 
@@ -633,7 +663,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 14 – Trie — starting with problem 220 🚀
+👉 Phase 15 – Backtracking — starting with problem 223 🚀
 
 ### ✅ Completed
 
@@ -651,14 +681,16 @@ Each solution includes:
 * Phase 11 — Binary Search Tree (8 problems: three-way walk, delete with successor replace, validate via range bounds, kth smallest, BST iterator, sorted array → BST — closed Jul 26)
 * Phase 12 — Heap (9 problems: min/max heap from scratch, priority queue, kth largest, top K frequent, median from stream, task scheduler, K closest points, last stone weight — 2× Blind75, 1× Hard, closed Jul 27)
 * Phase 13 — Graph (17 problems: DFS/BFS traversal, flood fill, clone graph, topological sort, Union-Find, cycle detection, Dijkstra's, Kruskal's MST, word ladder, alien dictionary — 3× Blind75, 2× Hard, closed Jul 31)
+* Phase 14 — Trie (3 problems: Trie template, wildcard DFS search, Word Search II with Trie + grid backtracking — 3× Blind75, 1× Hard, closed Aug 1)
+
 
 ### 🔄 In Progress
 
-* Phase 14 — Trie (Implement Trie, Word Search II)
+* Phase 15 — Backtracking (Subsets, Permutations, Combination Sum, Word Searc
 
 ### ⬜ Upcoming
 
-* Backtracking → Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+* Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -1008,6 +1040,26 @@ Each solution includes:
 * Build neighbor graph ONCE before BFS, not inside the BFS loop — nesting BFS inside graph-building runs the entire search N times with incomplete data
 * String tuple interpolation `\(word, 1)` fails in Swift — interpolate elements separately `(\(word), 1)`
 
+### Trie Fundamentals
+* Children dictionary `[Character: TrieNode]` + isWord flag — words sharing a prefix share the same path
+* Walk-create-mark: traverse, create missing nodes, MOVE current forward, mark isWord only on the final node
+* search vs startsWith: identical traversal, different return — `current.isWord` vs `true`
+* "hel" exists as a path but is not a word — the isWord flag is the entire distinction
+* All four phase bugs shared one root cause: not moving forward — Trie traversal is check → move → repeat
+
+### Trie + Wildcard DFS
+* '.' forces exploring ALL children — return true if ANY branch succeeds, false only after all fail
+* Recursion is required, not a loop — a loop cannot backtrack to sibling branches
+* Base case on index exhaustion: `index == word.count` → return node.isWord — recursion consumes the pattern, not the Trie
+* Recurse into `next`, never `node` — advancing the index while staying at the same node checks everything against one level
+
+### Trie + Grid Backtracking (Word Search II)
+* One Trie from ALL words → grid traversed ONCE — the Trie prunes any path that isn't a prefix of some word
+* `var word: String?` in the end node (not isWord) — no path rebuilding when found deep in the grid
+* `board[r][c] = "#"` + restore — O(1) visited tracking; "#" never matches a Trie child so visited cells auto-prune
+* `node.word = nil` after appending — dedup without a Set; same word via multiple paths recorded once
+* The grid double-loop calling dfs IS part of the solution — building the Trie and never traversing returns []
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -1069,6 +1121,9 @@ Each solution includes:
 | Dijkstra's (Weighted Path) | network delay, cheapest flights, shortest path with weights, positive edges only |
 | Kruskal's (MST) | min cost to connect, minimum spanning tree, connect all points, cheapest network |
 | BFS Shortest Transform | word ladder, minimum transformations, unweighted shortest path between states |
+| Trie | prefix, autocomplete, dictionary of words, spell check, startsWith |
+| Trie + Wildcard DFS | '.' matches any character, pattern search in word dictionary |
+| Trie + Grid Backtracking | word list + 2D board, find all words in grid |
 
 ---
 
@@ -1091,6 +1146,7 @@ It is about:
 * Reviewed code is an asset — retyping helpers from memory mid-phase discards it; paste the reviewed version, save cold rewrites for deliberate revision passes
 * The algorithm is rarely where points are lost — the boilerplate around it is
 * The question framework beats algorithm memorization — "What order?" → topological sort, "Is there a cycle?" → Union-Find, "Shortest path?" → BFS or Dijkstra's
+
 
 ---
 
@@ -1117,4 +1173,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 13 Graph complete (closed Jul 31) → Next: Trie (220–223) → Backtracking → … → DP → Bit Manipulation, ending Aug 28 — full plan in `ROADMAP.md` (problems 111–264, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 14 Trie complete (closed Aug 1) → Next: Backtracking (223–226) → Greedy → … → DP → Bit Manipulation — full plan in `ROADMAP.md` (problems 111–246, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
