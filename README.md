@@ -597,6 +597,35 @@ Focused on:
 
 📁 `phase-14-trie/` — **3 problems total (problems 220–222) · closed Aug 1 · 3× Blind75 · 1× Hard**
 
+
+## 🔹 Phase 15 – Backtracking ✅ COMPLETE
+
+Focused on:
+
+* The Choose → Explore → Undo pattern — one loop, every backtracking problem
+* The Explore call defines the problem: `i + 1` vs `i` vs no start index
+* Save-point discipline — on entry, when full, on target hit, on match
+* `used` set kept in sync with path for order-matters problems
+* 2D grid backtracking with the "#" mark-and-restore trick
+
+### 📌 Topics Covered
+
+#### Basics ✅
+
+* Backtracking Basics (Choose → Explore → Undo core loop)
+* Recursion Tree (depth counter + indented trace)
+* Path + Visited (used set for order-matters problems)
+* Duplicate Handling (sort + same-level skip)
+
+#### L1 — High Priority Interview Questions ✅
+
+* Subsets — LC 78 ⭐ Blind75 (save on ENTRY, recurse `i + 1`, no base case needed)
+* Permutations — LC 46 ⭐ Blind75 (loop ALL elements + used set, save when full)
+* Combination Sum — LC 39 ⭐ Blind75 (recurse with `i` for reuse, prune on `remaining < 0`)
+* Word Search — LC 79 ⭐ Blind75 (grid DFS from every cell, "#" mark → 4 directions → restore)
+
+📁 `phase-15-backtracking/` — **4 problems total (problems 223–226) · closed Aug 2 · 4× Blind75**
+
 ---
 
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–246)
@@ -613,7 +642,7 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 12 ✅ | Heap | 194–202 | Min/Max Heap, Top K Frequent, Median From Stream |
 | 13 ✅ | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary, Dijkstra's, Kruskal's |
 | 14 ✅ | Trie | 220–222 | Implement Trie, Add & Search Words, Word Search II |
-| 15 | Backtracking | 223–226 | Subsets, Permutations, Combination Sum, Word Search |
+| 15 ✅ | Backtracking | 223–226 | Subsets, Permutations, Combination Sum, Word Search |
 | 16 | Greedy | 227 | Jump Game |
 | 17 | Intervals | 228–230 | Merge Intervals, Insert Interval, Non-Overlapping Intervals |
 | 18 | Matrix | 231–233 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
@@ -663,7 +692,8 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 15 – Backtracking — starting with problem 223 🚀
+👉 Phase 16 – Greedy — problem 227 (Jump Game) 🚀
+
 
 ### ✅ Completed
 
@@ -682,11 +712,14 @@ Each solution includes:
 * Phase 12 — Heap (9 problems: min/max heap from scratch, priority queue, kth largest, top K frequent, median from stream, task scheduler, K closest points, last stone weight — 2× Blind75, 1× Hard, closed Jul 27)
 * Phase 13 — Graph (17 problems: DFS/BFS traversal, flood fill, clone graph, topological sort, Union-Find, cycle detection, Dijkstra's, Kruskal's MST, word ladder, alien dictionary — 3× Blind75, 2× Hard, closed Jul 31)
 * Phase 14 — Trie (3 problems: Trie template, wildcard DFS search, Word Search II with Trie + grid backtracking — 3× Blind75, 1× Hard, closed Aug 1)
+* Phase 15 — Backtracking (4 problems: Choose→Explore→Undo pattern, Subsets, Permutations, Combination Sum with reuse, Word Search grid DFS — 4× Blind75, closed Aug 2)
+
 
 
 ### 🔄 In Progress
 
-* Phase 15 — Backtracking (Subsets, Permutations, Combination Sum, Word Searc
+* Phase 16 — Greedy (Jump Game)
+
 
 ### ⬜ Upcoming
 
@@ -1060,6 +1093,22 @@ Each solution includes:
 * `node.word = nil` after appending — dedup without a Set; same word via multiple paths recorded once
 * The grid double-loop calling dfs IS part of the solution — building the Trie and never traversing returns []
 
+### Backtracking Core
+* Choose → Explore → Undo — same path array reused; Undo guarantees siblings start clean
+* The Explore call defines the problem: `i + 1` = no reuse (Subsets), `i` = reuse allowed (Combination Sum), no start index + used set = any order (Permutations)
+* Save point differs: Subsets on EVERY entry, Permutations only when full, Combination Sum when remaining == 0
+* path and used must mutate together — append+insert on Choose, removeLast+remove on Undo
+* Pass `remaining` down instead of re-summing — `remaining < 0` is the cut that stops infinite reuse
+* Duplicate skip: sort first, then `i > index && nums[i] == nums[i-1]` — blocks sibling duplicates, allows going deeper
+* The Explore step is the easiest to lose — forgetting the recursive call turns three steps into two
+
+### Grid Backtracking (Word Search)
+* dfs(row, col, index) = "can I match word[index...] from here?" — try every cell as a start
+* Check order is load-bearing: index-complete → bounds → char mismatch; bounds BEFORE array access
+* "#" mark → explore 4 directions → restore — O(1) visited, and "#" never matches a letter
+* Chain directions with `||` — short-circuits the moment one succeeds
+* Naming: `exit` shadows Swift's built-in; LC 79 requires `exist`
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -1124,6 +1173,10 @@ Each solution includes:
 | Trie | prefix, autocomplete, dictionary of words, spell check, startsWith |
 | Trie + Wildcard DFS | '.' matches any character, pattern search in word dictionary |
 | Trie + Grid Backtracking | word list + 2D board, find all words in grid |
+| Backtracking (Subsets) | all subsets, power set, all combinations |
+| Backtracking (Permutations) | all orderings, arrangements, order matters |
+| Backtracking + Pruning | combination sum, target sum, reuse elements, cut invalid branches |
+| Grid Backtracking | word in 2D board, path in grid, cannot reuse cell |
 
 ---
 
@@ -1173,4 +1226,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 14 Trie complete (closed Aug 1) → Next: Backtracking (223–226) → Greedy → … → DP → Bit Manipulation — full plan in `ROADMAP.md` (problems 111–246, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 15 Backtracking complete (closed Aug 2) → Next: Greedy (227) → Intervals → Matrix → DP → Bit Manipulation — full plan in `ROADMAP.md` (problems 111–246, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
