@@ -651,7 +651,35 @@ Focused on:
 
 📁 `phase-16-greedy/` — **2 problems total (problems 227–228) · closed Aug 2 · 1× Blind75**
 
----
+## 🔹 Phase 17 – Intervals ✅ COMPLETE
+
+Focused on:
+
+* Sorting as step 0 — overlappers become neighbors, O(n²) → O(n)
+* The merge pattern: extend-or-push with a work-in-progress interval
+* The `<=` vs `<` boundary — touchers combine when merging, coexist when scheduling
+* Three-zone insertion with one shared index
+* Meeting Rooms II — min rooms = max concurrent, Phase 12's heap returns
+
+### 📌 Topics Covered
+
+#### Basics ✅
+
+* Intervals Basics (reading [start, end], number-line visualization, 3 relationships)
+* Sorting Intervals (START vs END keys, why sorting kills all-pairs checking)
+* Merge Pattern (extend-or-push, max() for contained intervals)
+* Overlap Pattern (detect + greedy min-removals, the <= vs < trap)
+
+#### L1 — High Priority Interview Questions ✅
+
+* Merge Intervals — LC 56 ⭐ Blind75 (sort by start, extend-or-push, final append)
+* Insert Interval — LC 57 ⭐ Blind75 (three zones, one index, O(n) no sort)
+* Non-Overlapping Intervals — LC 435 ⭐ Blind75 (sort by END, greedy keep-earliest-end)
+* Meeting Rooms — LC 252 / LintCode 920 (neighbor clash check, strict <)
+* Meeting Rooms II — LC 253 / LintCode 919 (min-heap of end times, reuse vs new room)
+
+📁 `phase-17-intervals/` — **5 problems total (problems 229–233) · closed Aug 2 · 3× Blind75**
+
 
 ---
 
@@ -671,8 +699,7 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 14 ✅ | Trie | 220–222 | Implement Trie, Add & Search Words, Word Search II |
 | 15 ✅ | Backtracking | 223–226 | Subsets, Permutations, Combination Sum, Word Search |
 | 16 ✅ | Greedy | 227–228 | Jump Game, Jump Game II |
-| 17 | Intervals | 228–230 | Merge Intervals, Insert Interval, Non-Overlapping Intervals |
-| 18 | Matrix | 231–233 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
+| 17 ✅ | Intervals | 229–233 | Merge, Insert, Non-Overlapping, Meeting Rooms I & II || 18 | Matrix | 231–233 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
 | 19 | Dynamic Programming | 234–243 | Climbing Stairs, Coin Change, LIS, Word Break, LCS |
 | 20 | Bit Manipulation | 244–246 | Number of 1 Bits, Counting Bits, Reverse Bits |
 
@@ -719,8 +746,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 17 – Intervals — problems 229–231 (Merge Intervals, Insert Interval, Non-Overlapping Intervals) 🚀
-
+👉 Phase 18 – Matrix — Rotate Image, Spiral Matrix, Set Matrix Zeroes 🚀
 
 ### ✅ Completed
 
@@ -741,17 +767,16 @@ Each solution includes:
 * Phase 14 — Trie (3 problems: Trie template, wildcard DFS search, Word Search II with Trie + grid backtracking — 3× Blind75, 1× Hard, closed Aug 1)
 * Phase 15 — Backtracking (4 problems: Choose→Explore→Undo pattern, Subsets, Permutations, Combination Sum with reuse, Word Search grid DFS — 4× Blind75, closed Aug 2)
 * Phase 16 — Greedy (2 problems: exchange argument, greedy failure counterexample, sort-then-scan, Jump Game farthest-reach, Jump Game II level boundaries — 1× Blind75, closed Aug 2, one day)
-
+* Phase 17 — Intervals (5 problems: merge pattern, three-zone insert, sort-by-end greedy, Meeting Rooms I & II with heap-of-end-times — 3× Blind75, closed Aug 2)
 
 
 ### 🔄 In Progress
 
-* Phase 17 — Intervals (Merge, Insert, Non-Overlapping)
-
+* Phase 18 — Matrix (Rotate Image, Spiral Matrix, Set Matrix Zeroes)
 
 ### ⬜ Upcoming
 
-* Greedy → Intervals → Matrix → Dynamic Programming → Bit Manipulation
+*  Matrix → Dynamic Programming → Bit Manipulation
 
 ---
 
@@ -1151,6 +1176,17 @@ Each solution includes:
 * Update farthest BEFORE the boundary check — order inside the loop is load-bearing
 * Loop to `count - 1`, not `count` — including the last index counts a phantom extra jump
 
+
+### Intervals
+* Sort first — overlappers become neighbors; compare i with i−1, never all pairs
+* Sort key is the strategy: START for merging, END for greedy keep/remove
+* The work-in-progress interval enters the result exactly once — on a gap, or the final append after the loop; both bugs of LC 56 live here
+* Extend with max() — the contained interval [[1,10],[2,3]] breaks plain assignment
+* <= vs < is the phase's off-by-one: touchers COMBINE when merging (LC 56), COEXIST when scheduling (LC 435/252)
+* Insert = three zones, one shared index — copy before, absorb with min/max, push once, copy after; the new interval bridges existing ones
+* lastEnd freezes on removal — advancing it keeps the wrong (later-ending) interval
+* Min rooms = max concurrent — heap of end times, root = earliest-freeing room; reuse is pop+push, final heap size is the answer
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -1222,6 +1258,10 @@ Each solution includes:
 | Greedy (Exchange Argument) | maximum activities, minimum resources, provably safe local choice |
 | Farthest Reach | jump game, can I reach the end, reachability in one pass |
 | Level Boundaries | minimum jumps, fewest steps, BFS levels without a queue |
+| Merge Pattern | merge intervals, combine overlapping, consolidate ranges |
+| Three-Zone Insert | insert into sorted intervals, before/overlap/after |
+| Sort-by-End Greedy | non-overlapping, min removals, max meetings attendable |
+| Heap of End Times | meeting rooms, min resources, max concurrent events |
 
 ---
 
@@ -1271,4 +1311,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 16 Greedy complete (closed Aug 2 — same day as Phase 15) → Next: Intervals → Matrix → DP → Bit Manipulation — full plan in `ROADMAP.md` (Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 17 Intervals complete (closed Aug 2 — THREE phases in one day: 15, 16, 17) → Next: Matrix → DP → Bit Manipulation. Mock interviews parallel from mid-August. Target: September 2026 loops.*
