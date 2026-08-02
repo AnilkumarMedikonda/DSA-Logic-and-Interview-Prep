@@ -626,6 +626,33 @@ Focused on:
 
 📁 `phase-15-backtracking/` — **4 problems total (problems 223–226) · closed Aug 2 · 4× Blind75**
 
+## 🔹 Phase 16 – Greedy ✅ COMPLETE
+
+Focused on:
+
+* The greedy mindset — commit once, never undo (the anti-backtracking)
+* Proving greedy safe via the exchange argument
+* When greedy fails — early local best blocking a better future
+* Sort-then-scan: the sort key IS the strategy
+* Both Jump Game variants — reachability and minimum jumps
+
+### 📌 Topics Covered
+
+#### Basics ✅
+
+* Greedy Basics (largest-coin-first, one pass, no undo)
+* Greedy Patterns (success: activity selection; failure: coins [4,3,1] — why LC 322 needs DP)
+* Sorting Greedy (Assign Cookies — sort both, smallest-that-fits, two pointers)
+
+#### L1 — High Priority Interview Questions ✅
+
+* Jump Game — LC 55 ⭐ Blind75 (farthest reachable index, one variable, O(n)/O(1))
+* Jump Game II — LC 45 (BFS levels without a queue — jump when `i == currentEnd`)
+
+📁 `phase-16-greedy/` — **2 problems total (problems 227–228) · closed Aug 2 · 1× Blind75**
+
+---
+
 ---
 
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–246)
@@ -643,7 +670,7 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 13 ✅ | Graph | 203–219 | Islands, Clone Graph, Course Schedule, Alien Dictionary, Dijkstra's, Kruskal's |
 | 14 ✅ | Trie | 220–222 | Implement Trie, Add & Search Words, Word Search II |
 | 15 ✅ | Backtracking | 223–226 | Subsets, Permutations, Combination Sum, Word Search |
-| 16 | Greedy | 227 | Jump Game |
+| 16 ✅ | Greedy | 227–228 | Jump Game, Jump Game II |
 | 17 | Intervals | 228–230 | Merge Intervals, Insert Interval, Non-Overlapping Intervals |
 | 18 | Matrix | 231–233 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
 | 19 | Dynamic Programming | 234–243 | Climbing Stairs, Coin Change, LIS, Word Break, LCS |
@@ -692,7 +719,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 16 – Greedy — problem 227 (Jump Game) 🚀
+👉 Phase 17 – Intervals — problems 229–231 (Merge Intervals, Insert Interval, Non-Overlapping Intervals) 🚀
 
 
 ### ✅ Completed
@@ -713,12 +740,13 @@ Each solution includes:
 * Phase 13 — Graph (17 problems: DFS/BFS traversal, flood fill, clone graph, topological sort, Union-Find, cycle detection, Dijkstra's, Kruskal's MST, word ladder, alien dictionary — 3× Blind75, 2× Hard, closed Jul 31)
 * Phase 14 — Trie (3 problems: Trie template, wildcard DFS search, Word Search II with Trie + grid backtracking — 3× Blind75, 1× Hard, closed Aug 1)
 * Phase 15 — Backtracking (4 problems: Choose→Explore→Undo pattern, Subsets, Permutations, Combination Sum with reuse, Word Search grid DFS — 4× Blind75, closed Aug 2)
+* Phase 16 — Greedy (2 problems: exchange argument, greedy failure counterexample, sort-then-scan, Jump Game farthest-reach, Jump Game II level boundaries — 1× Blind75, closed Aug 2, one day)
 
 
 
 ### 🔄 In Progress
 
-* Phase 16 — Greedy (Jump Game)
+* Phase 17 — Intervals (Merge, Insert, Non-Overlapping)
 
 
 ### ⬜ Upcoming
@@ -1109,6 +1137,20 @@ Each solution includes:
 * Chain directions with `||` — short-circuits the moment one succeeds
 * Naming: `exit` shadows Swift's built-in; LC 79 requires `exist`
 
+
+### Greedy Core
+* Commit once, never undo — Phase 15's three steps collapse to one: Choose. Done.
+* The exchange argument is the interview skill: "swapping my greedy choice for any other never improves the answer" — the code is short, the proof is the job
+* Greedy fails when an early best blocks a better future — coins [4,3,1] amount 6: greedy 4+1+1, optimal 3+3; that's why Coin Change is DP
+* The test question: can a locally worse choice EVER win later? NO → greedy, YES → DP/backtracking
+* The sort key IS the strategy — end time for activity selection, start time for merging; after sorting, the pass is usually two pointers
+
+### Jump Game Family
+* Never ask "which jump?" — track the farthest reachable index; `i > farthest` means unreachable, one variable replaces exponential search
+* Minimum jumps = BFS levels without a queue — `currentEnd` is the current range edge; touching it forces a jump and extends the range to `farthest`
+* Update farthest BEFORE the boundary check — order inside the loop is load-bearing
+* Loop to `count - 1`, not `count` — including the last index counts a phantom extra jump
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -1177,6 +1219,9 @@ Each solution includes:
 | Backtracking (Permutations) | all orderings, arrangements, order matters |
 | Backtracking + Pruning | combination sum, target sum, reuse elements, cut invalid branches |
 | Grid Backtracking | word in 2D board, path in grid, cannot reuse cell |
+| Greedy (Exchange Argument) | maximum activities, minimum resources, provably safe local choice |
+| Farthest Reach | jump game, can I reach the end, reachability in one pass |
+| Level Boundaries | minimum jumps, fewest steps, BFS levels without a queue |
 
 ---
 
@@ -1226,4 +1271,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 15 Backtracking complete (closed Aug 2) → Next: Greedy (227) → Intervals → Matrix → DP → Bit Manipulation — full plan in `ROADMAP.md` (problems 111–246, Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 16 Greedy complete (closed Aug 2 — same day as Phase 15) → Next: Intervals → Matrix → DP → Bit Manipulation — full plan in `ROADMAP.md` (Blind75-complete). Mock interviews parallel from mid-August. Target: September 2026 loops.*
