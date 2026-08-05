@@ -681,6 +681,33 @@ Focused on:
 📁 `phase-17-intervals/` — **5 problems total (problems 229–233) · closed Aug 2 · 3× Blind75**
 
 
+## 🔹 Phase 18 – Matrix ✅ COMPLETE
+
+Focused on:
+
+* Non-square grids as the default — a square grid makes rows and columns interchangeable and hides index swaps
+* Transpose + reverse as a composition — two sweeps that produce a rotation
+* Four shrinking boundaries, with guards re-checked mid-loop
+* The grid as its own scratch space — row 0 and column 0 replace the flag arrays
+
+### 📌 Topics Covered
+
+#### Basics ✅
+
+* Matrix Basics (safe row/column derivation, runtime zero grids, isValid, value semantics)
+* Traversal (row-wise, column-wise, both diagonals, clockwise boundary walk)
+* Directions (4- and 8-direction offsets, neighbour enumeration, walk to the edge)
+* In-Place Update (transpose, row reversal, row-order reversal — all via inout)
+
+#### L1 — High Priority Interview Questions ✅
+
+* Rotate Image — LC 48 ⭐ Blind75 (transpose with inner bound `row + 1`, then reverse each row)
+* Spiral Matrix — LC 54 ⭐ Blind75 (four shrinking boundaries, guards before the bottom and left passes)
+* Set Matrix Zeroes — LC 73 ⭐ Blind75 (row 0 / column 0 as flags + `firstColumnHasZero` for the `[0][0]` collision)
+
+📁 `phase-18-matrix/` — **3 problems total (problems 234–236) · closed Aug 5 · 3× Blind75**
+
+
 ---
 
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–246)
@@ -702,6 +729,10 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 17 ✅ | Intervals | 229–233 | Merge, Insert, Non-Overlapping, Meeting Rooms I & II || 18 | Matrix | 231–233 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
 | 19 | Dynamic Programming | 234–243 | Climbing Stairs, Coin Change, LIS, Word Break, LCS |
 | 20 | Bit Manipulation | 244–246 | Number of 1 Bits, Counting Bits, Reverse Bits |
+| 17 ✅ | Intervals | 229–233 | Merge, Insert, Non-Overlapping, Meeting Rooms I & II |
+| 18 ✅ | Matrix | 234–236 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
+| 19 | Dynamic Programming | 237–246 | Climbing Stairs, Coin Change, LIS, Word Break, LCS |
+| 20 | Bit Manipulation | 247–249 | Number of 1 Bits, Counting Bits, Reverse Bits |
 
 Full folder-level breakdown lives in `ROADMAP.md`.
 
@@ -746,7 +777,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 18 – Matrix — Rotate Image, Spiral Matrix, Set Matrix Zeroes 🚀
+👉 Phase 19 – Dynamic Programming — Climbing Stairs, Coin Change, LIS, Word Break, LCS 🚀
 
 ### ✅ Completed
 
@@ -768,15 +799,17 @@ Each solution includes:
 * Phase 15 — Backtracking (4 problems: Choose→Explore→Undo pattern, Subsets, Permutations, Combination Sum with reuse, Word Search grid DFS — 4× Blind75, closed Aug 2)
 * Phase 16 — Greedy (2 problems: exchange argument, greedy failure counterexample, sort-then-scan, Jump Game farthest-reach, Jump Game II level boundaries — 1× Blind75, closed Aug 2, one day)
 * Phase 17 — Intervals (5 problems: merge pattern, three-zone insert, sort-by-end greedy, Meeting Rooms I & II with heap-of-end-times — 3× Blind75, closed Aug 2)
+* Phase 18 — Matrix (3 problems: non-square basics, transpose + reverse rotation, four-boundary spiral walk, first-row/column flag storage for O(1) space — 3× Blind75, closed Aug 5)
 
 
 ### 🔄 In Progress
 
-* Phase 18 — Matrix (Rotate Image, Spiral Matrix, Set Matrix Zeroes)
+* Phase 19 — Dynamic Programming
 
 ### ⬜ Upcoming
 
-*  Matrix → Dynamic Programming → Bit Manipulation
+*  Dynamic Programming → Bit Manipulation
+
 
 ---
 
@@ -1187,6 +1220,25 @@ Each solution includes:
 * lastEnd freezes on removal — advancing it keeps the wrong (later-ending) interval
 * Min rooms = max concurrent — heap of end times, root = earliest-freeing room; reuse is pop+push, final heap size is the answer
 
+
+### Matrix
+* Test on non-square grids — a square grid makes rows and columns interchangeable, so an index swap passes silently
+* Loop order flips, subscript order does not — column-wise traversal still reads matrix[row][col]
+* Offsets are (rowDelta, colDelta) — "right" is (0, 1); the wrong tuple order rotates every traversal sideways without crashing
+* Compute newRow/newCol into fresh constants — mutating row/col makes each direction step off the previous one
+* Guard before subscripting — matrix[-1][0] crashes, it does not return nil
+* inout is mandatory — Swift arrays are value types, so a plain parameter mutates a copy
+* Transpose inner loop starts at i + 1 — starting at 0 swaps every pair twice and undoes itself
+* Rotation = transpose + reverse each ROW (clockwise) or + reverse the ROW ORDER (counter-clockwise)
+* Test rotation on an even-sized grid — a 3×3 centre cell masks inner-bound errors
+* Spiral tracks four boundaries, not four directions — each pass consumes an edge and shrinks its own bound
+* Guards are re-checked mid-loop — without them a single remaining row or column is walked twice ([[1,2,3,4]] is the proof)
+* <= not < on the spiral loop condition — < drops the final row or column
+* A sentinel is valid only when it provably isn't data — Int.min works for LC 73 only because values are 32-bit bounded
+* Row 0 and column 0 are m + n spare cells — exactly the flag arrays you were about to allocate
+* matrix[0][0] cannot hold two flags — it keeps one meaning, a separate Bool keeps the other
+* Write order is load-bearing — interior, then row 0, then column 0; clearing column 0 early wipes the row flags
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -1262,6 +1314,9 @@ Each solution includes:
 | Three-Zone Insert | insert into sorted intervals, before/overlap/after |
 | Sort-by-End Greedy | non-overlapping, min removals, max meetings attendable |
 | Heap of End Times | meeting rooms, min resources, max concurrent events |
+| Matrix Transpose + Reverse | rotate image, rotate 90 degrees, in-place rotation |
+| Shrinking Boundaries | spiral order, layer by layer, walk the perimeter inward |
+| In-Grid Flag Storage | set matrix zeroes, O(1) space follow-up, mark rows and columns |
 
 ---
 
@@ -1311,4 +1366,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 17 Intervals complete (closed Aug 2 — THREE phases in one day: 15, 16, 17) → Next: Matrix → DP → Bit Manipulation. Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 18 Matrix complete (closed Aug 5) → Next: DP → Bit Manipulation. Mock interviews parallel from mid-August. Target: September 2026 loops.*
