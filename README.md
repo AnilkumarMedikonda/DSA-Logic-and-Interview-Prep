@@ -708,6 +708,44 @@ Focused on:
 📁 `phase-18-matrix/` — **3 problems total (problems 234–236) · closed Aug 5 · 3× Blind75**
 
 
+## 🔹 Phase 19 – Dynamic Programming ✅ COMPLETE
+
+Focused on:
+
+* The six-line checklist — state, options, combiner, transition, base, answer — written before any code
+* "Ending at i" vs "up to i" states — the difference between max(dp) and dp[n-1]
+* Bounded vs unbounded knapsack — the inner loop direction flips (backwards for 0/1, forwards for reuse)
+* Space optimization: rolling variables, rolling row, and the diagonal carry
+* First 2D dp[i][j] grids — Unique Paths and LCS
+
+### 📌 Topics Covered
+
+#### Basics ✅
+
+* DP Basics (overlapping subproblems + optimal substructure, why naive Fibonacci is O(2ⁿ))
+* Memoization (top-down cache, sentinel choice, three-line recipe)
+* Tabulation (bottom-up fill, loop-direction dependency)
+* Space Optimization (rolling variables, when it's impossible)
+* State Transition (the six-line checklist, dimension question)
+
+#### L1 — 1D DP ✅
+
+* Climbing Stairs — LC 70 ⭐ Blind75 (Fibonacci recurrence, four solutions to O(1) space)
+* House Robber — LC 198 ⭐ Blind75 (up-to-i state, max(dp[i-1], nums[i] + dp[i-2]))
+* House Robber II — LC 213 ⭐ Blind75 (circular — two straight-line runs, guard n == 1)
+* Coin Change — LC 322 ⭐ Blind75 (unbounded knapsack, sentinel amount + 1, forward loop)
+* Longest Increasing Subsequence — LC 300 ⭐ Blind75 (ending-at-i, answer max(dp); O(n log n) tails follow-up)
+* Partition Equal Subset Sum — LC 416 ⭐ Blind75 (subset-sum to total/2, 0/1 knapsack, backwards loop)
+* Word Break — LC 139 ⭐ Blind75 (Coin Change on positions, forward loop, distinct-length trick)
+* Decode Ways — LC 91 ⭐ Blind75 (Climbing Stairs with legality rules, one-digit ≠ '0', two-digit 10–26)
+
+#### L2 — 2D DP ✅
+
+* Unique Paths — LC 62 ⭐ Blind75 (dp[i][j] = above + left, rolling-row collapse to O(n))
+* Longest Common Subsequence — LC 1143 ⭐ Blind75 ((m+1)×(n+1) grid, diagonal carry to O(n))
+
+📁 `phase-19-dynamic-programming/` — **10 problems total (problems 237–246) · closed Aug 8 · 10× Blind75**
+
 ---
 
 # 🗺️ Master Roadmap — Phases 7–20 (Problems 111–246)
@@ -726,12 +764,9 @@ Blind75-complete roadmap covering every remaining interview topic, ordered by co
 | 14 ✅ | Trie | 220–222 | Implement Trie, Add & Search Words, Word Search II |
 | 15 ✅ | Backtracking | 223–226 | Subsets, Permutations, Combination Sum, Word Search |
 | 16 ✅ | Greedy | 227–228 | Jump Game, Jump Game II |
-| 17 ✅ | Intervals | 229–233 | Merge, Insert, Non-Overlapping, Meeting Rooms I & II || 18 | Matrix | 231–233 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
-| 19 | Dynamic Programming | 234–243 | Climbing Stairs, Coin Change, LIS, Word Break, LCS |
-| 20 | Bit Manipulation | 244–246 | Number of 1 Bits, Counting Bits, Reverse Bits |
 | 17 ✅ | Intervals | 229–233 | Merge, Insert, Non-Overlapping, Meeting Rooms I & II |
 | 18 ✅ | Matrix | 234–236 | Rotate Image, Spiral Matrix, Set Matrix Zeroes |
-| 19 | Dynamic Programming | 237–246 | Climbing Stairs, Coin Change, LIS, Word Break, LCS |
+| 19 ✅ | Dynamic Programming | 237–246 | Climbing Stairs, House Robber I/II, Coin Change, LIS, Partition, Word Break, Decode Ways, Unique Paths, LCS |
 | 20 | Bit Manipulation | 247–249 | Number of 1 Bits, Counting Bits, Reverse Bits |
 
 Full folder-level breakdown lives in `ROADMAP.md`.
@@ -777,7 +812,7 @@ Each solution includes:
 
 # 🔥 Current Focus
 
-👉 Phase 19 – Dynamic Programming — Climbing Stairs, Coin Change, LIS, Word Break, LCS 🚀
+👉 Phase 20 – Bit Manipulation — Number of 1 Bits, Counting Bits, Reverse Bits 🚀
 
 ### ✅ Completed
 
@@ -800,15 +835,13 @@ Each solution includes:
 * Phase 16 — Greedy (2 problems: exchange argument, greedy failure counterexample, sort-then-scan, Jump Game farthest-reach, Jump Game II level boundaries — 1× Blind75, closed Aug 2, one day)
 * Phase 17 — Intervals (5 problems: merge pattern, three-zone insert, sort-by-end greedy, Meeting Rooms I & II with heap-of-end-times — 3× Blind75, closed Aug 2)
 * Phase 18 — Matrix (3 problems: non-square basics, transpose + reverse rotation, four-boundary spiral walk, first-row/column flag storage for O(1) space — 3× Blind75, closed Aug 5)
+* Phase 19 — Dynamic Programming (10 problems: six-line checklist, four-solution ladder, Coin Change sentinel, LIS ending-at-i, Partition 0/1 knapsack backwards loop, Word Break, Decode Ways, Unique Paths rolling row, LCS diagonal carry — 10× Blind75, closed Aug 8)
 
 
 ### 🔄 In Progress
 
-* Phase 19 — Dynamic Programming
+* Phase 20 — Bit Manipulation
 
-### ⬜ Upcoming
-
-*  Dynamic Programming → Bit Manipulation
 
 
 ---
@@ -1239,6 +1272,24 @@ Each solution includes:
 * matrix[0][0] cannot hold two flags — it keeps one meaning, a separate Bool keeps the other
 * Write order is load-bearing — interior, then row 0, then column 0; clearing column 0 early wipes the row flags
 
+### Dynamic Programming
+* The six-line checklist comes before any code — state, options, combiner, transition, base, answer; five of the six happen before a line of Swift, and that ratio is what the interviewer grades
+* Write the state as a SENTENCE, not a variable — "dp[i] = max money robbable from houses 0...i"; if you can't finish the sentence, you don't have a state yet
+* The combiner names the base case — max/min → trivial best, + → identity 1, || → true; dp[0] = 1 in Decode Ways and dp[0] = true in Word Break both fall straight out of this
+* "Ending at i" vs "up to i" are DIFFERENT states — House Robber is "up to i" so the answer is dp[n-1]; LIS is "ending at i" so the answer is max(dp); the wrong pick returns an almost-right number
+* Four solutions, only two lines change — naive → memo → tabulation → rolling is mechanical; state (line 1) and transition (line 4) are the only parts that vary between problems
+* Say the whole ladder out loud — "O(2ⁿ) because the subtree rebuilds, memo drops it to O(n), tabulation removes the stack, and since the transition reaches back two cells I collapse to O(1)"
+* The sentinel must be PROVABLY outside the answer range — amount + 1 for Coin Change beats Int.max: it can't overflow on +1 and no valid answer reaches it; the final check is `> amount`, not `== sentinel`
+* Bounded vs unbounded flips the inner loop direction — Coin Change reuses coins (unbounded) → forward; Partition uses each number once (0/1) → backward; Word Break reuses words → forward
+* Space optimization needs a FIXED reach-back — two rolling variables when the transition reads dp[i-1]/dp[i-2]; impossible when it reaches back a variable distance (Coin Change by `coin`, LIS to every earlier j)
+* Rolling variables need the OLD value captured first — `let current = prev1 + prev2` before reassigning, or a tuple swap; overwriting prev1 before reading it corrupts prev2
+* 2D array sizing: outer = rows, inner = columns — Array(repeating: Array(repeating: 0, count: cols), count: rows); getting it backwards crashed Partition's 2D version on [1,1]
+* The rolling-row trick is about overwrite TIMING — dp[j] not yet touched this row is ABOVE, dp[j-1] already touched is LEFT; one array holds two rows because of when each slot is written
+* LCS needs a third neighbour, the DIAGONAL — carried in one variable: `let top = dp[j]` before overwrite, then `diagonal = top` at the end of the iteration
+* The (m+1)×(n+1) offset is where index bugs live — dp[i][j] means "first i characters", so the i-th char is at index i-1, and the answer is dp[m][n], not dp[m-1][n-1] like Unique Paths
+* Half-open ranges self-guard, closed ranges don't — 1..<m is empty (safe) when m == 1; 1...m traps; every crash this phase was a closed range over a size-1 or size-0 input
+* Base-case seeding BEFORE the size guard crashes — dp[1] = ... written before `if n < 2 { return }` fails on single-element input; guard first, then allocate
+
 ---
 
 # ⚙️ Pattern Recognition Table
@@ -1317,7 +1368,9 @@ Each solution includes:
 | Matrix Transpose + Reverse | rotate image, rotate 90 degrees, in-place rotation |
 | Shrinking Boundaries | spiral order, layer by layer, walk the perimeter inward |
 | In-Grid Flag Storage | set matrix zeroes, O(1) space follow-up, mark rows and columns |
-
+| 1D DP (Take/Skip) | max/min/count over a sequence, adjacent constraint, "in how many ways", climbing/robbing |
+| Knapsack (Subset Sum) | reach a target sum/amount, use items once (0/1) or unlimited (unbounded), "can it be made" |
+| 2D Grid DP | paths in a grid, two strings compared, dp[i][j] from neighbours (above/left/diagonal) |
 ---
 
 # 💡 Key Learning Philosophy
@@ -1366,4 +1419,4 @@ iOS Developer | Swift | DSA | Problem Solving
 
 ---
 
-*Phase 18 Matrix complete (closed Aug 5) → Next: DP → Bit Manipulation. Mock interviews parallel from mid-August. Target: September 2026 loops.*
+*Phase 19 DP complete (closed Aug 8) → Next: Bit Manipulation (final phase). Mock interviews parallel from mid-August. Target: September 2026 loops.*
